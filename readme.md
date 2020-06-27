@@ -108,14 +108,14 @@ public function boot()
 MIT. Please see the [license file](license.md) for more information.
 
 [link-crontab]: https://crontab.guru/
-[ico-version]: https://img.shields.io/packagist/v/timothydc/laravel-lightspeed-ecom-product-feed.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/timothydc/laravel-lightspeed-ecom-product-feed.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/timothydc/laravel-lightspeed-ecom-product-feed/master.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/timothydc/laravel-lightspeed-ecom-product-feeds.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/timothydc/laravel-lightspeed-ecom-product-feeds.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/timothydc/laravel-lightspeed-ecom-product-feeds/master.svg?style=flat-square
 [ico-styleci]: https://styleci.io/repos/12345678/shield
 
-[link-packagist]: https://packagist.org/packages/timothydc/laravel-lightspeed-ecom-product-feed
-[link-downloads]: https://packagist.org/packages/timothydc/laravel-lightspeed-ecom-product-feed
-[link-travis]: https://travis-ci.org/timothydc/laravel-lightspeed-ecom-product-feed
+[link-packagist]: https://packagist.org/packages/timothydc/laravel-lightspeed-ecom-product-feeds
+[link-downloads]: https://packagist.org/packages/timothydc/laravel-lightspeed-ecom-product-feeds
+[link-travis]: https://travis-ci.org/timothydc/laravel-lightspeed-ecom-product-feeds
 [link-styleci]: https://styleci.io/repos/12345678
 [link-author]: https://github.com/timothydc
 [link-contributors]: ../../contributors
