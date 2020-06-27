@@ -1,0 +1,32 @@
+{
+    "name": "timothydc/laravel-lightspeed-ecom-product-feeds",
+    "description": "Laravel package for Lightspeed product feeds",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Timothy De Cort",
+            "email": "mail@timothydc.be"
+        }
+    ],
+    "homepage": "https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds",
+    "keywords": ["timothydc", "lightspeed", "eCommerce", "laravel", "feed"],
+    "require": {
+        "php": "^7.4",
+        "seoshop/seoshop-php": "^1.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "TimothyDC\\LightspeedEcomProductFeed\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "TimothyDC\\LightspeedEcomProductFeed\\LightspeedEcomProductFeedServiceProvider"
+            ],
+            "aliases": {
+                "LightspeedRetailApi": "TimothyDC\\LightspeedEcomProductFeed\\LightspeedEcomProductFeed"
+            }
+        }
+    }
+}
