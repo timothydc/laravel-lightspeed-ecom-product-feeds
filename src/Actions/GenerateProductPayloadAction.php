@@ -4,8 +4,9 @@ declare(strict_types=1);
 namespace TimothyDC\LightspeedEcomProductFeed\Actions;
 
 use Illuminate\Support\Carbon;
+use TimothyDC\LightspeedEcomProductFeed\Interfaces\ProductPayloadMappingInterface;
 
-class GenerateProductPayloadAction
+class GenerateProductPayloadAction implements ProductPayloadMappingInterface
 {
     public function execute(string $baseUrl, array $product): array
     {

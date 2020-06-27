@@ -5,19 +5,20 @@ namespace TimothyDC\LightspeedEcomProductFeed\Actions;
 
 use Illuminate\Support\Facades\Storage;
 use Spatie\ArrayToXml\ArrayToXml;
+use TimothyDC\LightspeedEcomProductFeed\Interfaces\ProductPayloadMappingInterface;
 use TimothyDC\LightspeedEcomProductFeed\LightspeedEcomApi;
 use TimothyDC\LightspeedEcomProductFeed\Models\ProductFeed;
 
 class GenerateXmlFeedAction
 {
     private LightspeedEcomApi $lightspeedEcomApi;
-    private GenerateProductPayloadAction $generateProductPayloadAction;
+    private ProductPayloadMappingInterface $generateProductPayloadAction;
 
     public string $rootElementName = 'products';
     public string $childElementName = 'product';
     public string $storageOptions = 'public';
 
-    public function __construct(LightspeedEcomApi $lightspeedEcomApi, GenerateProductPayloadAction $generateProductPayloadAction)
+    public function __construct(LightspeedEcomApi $lightspeedEcomApi, ProductPayloadMappingInterface $generateProductPayloadAction)
     {
         $this->lightspeedEcomApi = $lightspeedEcomApi;
         $this->generateProductPayloadAction = $generateProductPayloadAction;

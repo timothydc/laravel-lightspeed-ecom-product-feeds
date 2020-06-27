@@ -71,6 +71,33 @@ Generate an XML by providing a product feed ID
 $ php artisan ecom-feed:generate-xml {product-feed-id}
 ```
 
+## Custom product XML data structure
+Create your own class and let it implement `ProductPayloadMappingInterface`.
+Take a look at `TimothyDC\LightspeedEcomProductFeed\Actions\GenerateProductPayloadAction` for some XML data structure inspiration.
+```php
+use TimothyDC\LightspeedEcomProductFeed\Interfaces\ProductPayloadMappingInterface;
+
+class CustomProductXml implements ProductPayloadMappingInterface
+{
+    public function execute(string $baseUrl, array $product): array
+    {
+        return ['product_id' => $product['id']];
+    }
+}
+```
+
+Bind your custom class via the `AppServiceProvider.php`
+
+```php
+public function boot()
+{
+    $this->app->bind(
+        \TimothyDC\LightspeedEcomProductFeed\Interfaces\ProductPayloadMappingInterface::class,
+        \CustomProductXml::class
+    );
+}
+```
+
 ## Credits
 
 - [Timothy De Cort][link-author]

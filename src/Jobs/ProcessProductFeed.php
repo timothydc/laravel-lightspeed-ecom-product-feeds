@@ -25,6 +25,6 @@ class ProcessProductFeed implements ShouldQueue
 
     public function handle(): void
     {
-        Artisan::call(GenerateXmlFeedCommand::class, ['productFeed' => $this->productFeed->id]);
+        Artisan::call(GenerateXmlFeedCommand::class, ['productFeedId' => $this->productFeed->id]);
     }
 }

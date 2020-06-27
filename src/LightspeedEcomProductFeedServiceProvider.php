@@ -6,7 +6,9 @@ namespace TimothyDC\LightspeedEcomProductFeed;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\ServiceProvider;
 use TimothyDC\LightspeedEcomProductFeed\Console\Commands\{CreateProductFeedCommand, GenerateXmlFeedCommand, RemoveProductFeedCommand, ShowProductFeedListCommand};
+use TimothyDC\LightspeedEcomProductFeed\Actions\GenerateProductPayloadAction;
 use TimothyDC\LightspeedEcomProductFeed\Console\Kernel;
+use TimothyDC\LightspeedEcomProductFeed\Interfaces\ProductPayloadMappingInterface;
 use TimothyDC\LightspeedEcomProductFeed\Services\ApiClient;
 
 class LightspeedEcomProductFeedServiceProvider extends ServiceProvider
@@ -52,7 +54,11 @@ class LightspeedEcomProductFeedServiceProvider extends ServiceProvider
             return new Kernel($app, $dispatcher);
         });
 
+        // make Laravel aware of our custom Kernel
         $this->app->make('lightspeed-ecom-product-feed.console.kernel');
+
+        // register product mapping class
+        $this->app->bind(ProductPayloadMappingInterface::class, GenerateProductPayloadAction::class);
     }
 
     /**
