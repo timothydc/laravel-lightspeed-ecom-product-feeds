@@ -15,6 +15,12 @@ class ShowProductFeedListCommand extends Command
     public function handle(): int
     {
         $feeds = ProductFeed::all()->toArray();
+
+        if (!$feeds) {
+            $this->info('No products feeds found.');
+            return 0;
+        }
+
         $this->table(array_keys(reset($feeds)), $feeds);
         return 0;
     }
