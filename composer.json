@@ -12,8 +12,22 @@
     "keywords": ["timothydc", "lightspeed", "eCommerce", "laravel", "feed"],
     "require": {
         "php": "^7.4",
-        "seoshop/seoshop-php": "^1.9"
+        "seoshop/seoshop-php": "^1.9",
+        "spatie/array-to-xml": "^2.0"
     },
+    "require-dev": {
+        "orchestra/testbench": "^5.3",
+        "phpunit/phpunit": "^9.2",
+        "mockery/mockery": "^1.4"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "TimothyDC\\LightspeedEcomProductFeed\\": "src/"
