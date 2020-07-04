@@ -1,8 +1,6 @@
-php:
-  preset: laravel
-  disabled:
-    - unused_use
-  finder:
-    not-name:
-      - index.php
-      - server.php
+preset: laravel
+enabled:
+  - phpdoc_annotation_without_dot
+
+disabled:
+  - concat_without_spaces

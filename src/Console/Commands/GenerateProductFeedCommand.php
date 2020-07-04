@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace TimothyDC\LightspeedEcomProductFeed\Console\Commands;
@@ -29,8 +30,9 @@ class GenerateProductFeedCommand extends Command
         $feedId = $this->argument('productFeedId');
         $feed = ProductFeed::find($feedId);
 
-        if (!$feed) {
+        if (! $feed) {
             $this->error(sprintf('Product feed with ID %d not found.', $feedId));
+
             return 1;
         }
 
