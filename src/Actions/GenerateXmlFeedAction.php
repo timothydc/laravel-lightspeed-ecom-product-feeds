@@ -13,7 +13,7 @@ use TimothyDC\LightspeedEcomProductFeed\Models\ProductFeed;
 class GenerateXmlFeedAction
 {
     private LightspeedEcomApi $lightspeedEcomApi;
-    private ProductPayloadMappingInterface $generateProductPayloadAction;
+    public ProductPayloadMappingInterface $generateProductPayloadAction;
 
     public string $rootElementName = 'products';
     public string $childElementName = 'product';

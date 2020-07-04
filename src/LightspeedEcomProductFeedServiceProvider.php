@@ -4,28 +4,39 @@ declare(strict_types=1);
 
 namespace TimothyDC\LightspeedEcomProductFeed;
 
-use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use TimothyDC\LightspeedEcomProductFeed\Actions\GenerateProductPayloadAction;
 use TimothyDC\LightspeedEcomProductFeed\Console\Commands\CreateProductFeedCommand;
 use TimothyDC\LightspeedEcomProductFeed\Console\Commands\GenerateProductFeedCommand;
 use TimothyDC\LightspeedEcomProductFeed\Console\Commands\ListProductFeedCommand;
 use TimothyDC\LightspeedEcomProductFeed\Console\Commands\RemoveProductFeedCommand;
-use TimothyDC\LightspeedEcomProductFeed\Console\Kernel;
 use TimothyDC\LightspeedEcomProductFeed\Interfaces\ProductPayloadMappingInterface;
+use TimothyDC\LightspeedEcomProductFeed\Jobs\ProcessProductFeed;
+use TimothyDC\LightspeedEcomProductFeed\Models\ProductFeed;
 use TimothyDC\LightspeedEcomProductFeed\Services\ApiClient;
 
 class LightspeedEcomProductFeedServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
+        // boot config
         $this->publishes([
             __DIR__ . '/../config/lightspeed-ecom-product-feed.php' => config_path('lightspeed-ecom-product-feed.php'),
         ], ['lightspeed-ecom-product-feed', 'lightspeed-ecom-product-feed:config']);
 
-        $this->publishes([
-            __DIR__ . '/../database/migrations/' => database_path('migrations'),
-        ], ['lightspeed-ecom-product-feed', 'lightspeed-ecom-product-feed:migrations']);
+        // boot migrations
+        if (! class_exists('CreateProductFeedTable')) {
+            $this->publishes([
+                __DIR__ . '/../database/migrations/create_product_feed_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_product_feed_table.php'),
+            ], ['lightspeed-ecom-product-feed', 'lightspeed-ecom-product-feed:migrations']);
+        }
+
+        // boot scheduled tasks
+        $this->app->booted(function () {
+            $this->addScheduledTasks($this->app->make(Schedule::class));
+        });
     }
 
     public function register(): void
@@ -53,15 +64,6 @@ class LightspeedEcomProductFeedServiceProvider extends ServiceProvider
 
         $this->app->alias(LightspeedEcomApi::class, 'lightspeed-ecom-api');
 
-        $this->app->singleton('lightspeed-ecom-product-feed.console.kernel', static function ($app) {
-            $dispatcher = $app->make(Dispatcher::class);
-
-            return new Kernel($app, $dispatcher);
-        });
-
-        // make Laravel aware of our custom Kernel
-        $this->app->make('lightspeed-ecom-product-feed.console.kernel');
-
         // register product mapping class
         $this->app->bind(ProductPayloadMappingInterface::class, GenerateProductPayloadAction::class);
     }
@@ -74,5 +76,22 @@ class LightspeedEcomProductFeedServiceProvider extends ServiceProvider
     public function provides(): array
     {
         return ['lightspeed-ecom-product-feed'];
+    }
+
+    protected function addScheduledTasks(Schedule $schedule): void
+    {
+        if (Config::get('lightspeed-ecom-product-feed.scheduled_tasks.auto_run') === false) {
+            return;
+        }
+
+        foreach (ProductFeed::all() as $productFeed) {
+            if (Config::get('lightspeed-ecom-product-feed.scheduled_tasks.use_queue') === true) {
+                // process via queue
+                $schedule->job(new ProcessProductFeed($productFeed), Config::get('lightspeed-ecom-product-feed.scheduled_tasks.queue'))->cron($productFeed->cron_expression);
+            } else {
+                // process via direct command
+                $schedule->command(GenerateProductFeedCommand::class, [$productFeed->id])->cron($productFeed->cron_expression);
+            }
+        }
     }
 }

@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateProductFeedTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('product_feeds', static function (Blueprint $table) {
@@ -24,17 +19,9 @@ class CreateProductFeedTable extends Migration
             $table->string('api_key');
             $table->string('api_secret');
 
+            $table->string('mapping_class')->nullable();
+
             $table->timestamps();
         });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('product_feeds');
     }
 }

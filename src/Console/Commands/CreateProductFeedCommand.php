@@ -4,14 +4,20 @@ declare(strict_types=1);
 
 namespace TimothyDC\LightspeedEcomProductFeed\Console\Commands;
 
+use Cron\CronExpression;
 use Illuminate\Console\Command;
 use Ramsey\Uuid\Uuid;
+use TimothyDC\LightspeedEcomProductFeed\Actions\GenerateProductPayloadAction;
+use TimothyDC\LightspeedEcomProductFeed\Interfaces\ProductPayloadMappingInterface;
 use TimothyDC\LightspeedEcomProductFeed\LightspeedEcomApi;
 use TimothyDC\LightspeedEcomProductFeed\Models\ProductFeed;
+use TimothyDC\LightspeedEcomProductFeed\Traits\AskUntilValidTrait;
 use WebshopappApiException;
 
 class CreateProductFeedCommand extends Command
 {
+    use AskUntilValidTrait;
+
     protected $signature = 'ecom-feed:create';
 
     protected $description = 'Create a new product feed definition';
@@ -27,15 +33,33 @@ class CreateProductFeedCommand extends Command
 
     public function handle(): int
     {
-        $apiKey = $this->ask('Enter your webshop API key');
-        $apiSecret = $this->ask('Enter your webshop API secret');
-        $cronExpression = $this->anticipate('Enter your cron interval', fn ($input) => ['* * * * *', '*/30 * * * *', '0 */2 * * *', '0 */4 * * *', '0 0 * * *']);
+        $mappingClass = $this->askWithValidation('Enter your custom mapping class', 'mapping_class', [
+            'bail',
+            fn ($attribute, $value, $fail) => ! class_exists($value)
+                ? $fail('Class "' . $value . '" not found.')
+                : null,
+            fn ($attribute, $value, $fail) => ! (new $value()) instanceof ProductPayloadMappingInterface
+                ? $fail($value . ' must implement ' . ProductPayloadMappingInterface::class)
+                : null,
+        ], GenerateProductPayloadAction::class);
+
+        $cronExpression = $this->anticipateWithValidation('Enter your cron interval',
+            fn ($input) => ['* * * * *', '*/30 * * * *', '0 */2 * * *', '0 */4 * * *', '0 0 * * *'],
+            'cron_expression', [
+                fn ($attribute, $value, $fail) => ! CronExpression::isValidExpression($value)
+                    ? $fail('"' . $value . '" is not a valid cron expression.')
+                    : null,
+            ], '30 */4 * * *');
+
+        $apiKey = $this->askWithValidation('Enter your webshop API key', 'API key', ['required']);
+        $apiSecret = $this->askWithValidation('Enter your webshop API secret', 'API secret', ['required']);
 
         $productFeed = new ProductFeed();
         $productFeed->uuid = Uuid::uuid4();
         $productFeed->api_key = $apiKey;
         $productFeed->api_secret = $apiSecret;
         $productFeed->cron_expression = $cronExpression;
+        $productFeed->mapping_class = $mappingClass === GenerateProductPayloadAction::class ? null : $mappingClass; // set null when using the default
 
         try {
             // set freshly entered credentials
