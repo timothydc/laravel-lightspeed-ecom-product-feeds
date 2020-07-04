@@ -7,6 +7,8 @@ namespace TimothyDC\LightspeedEcomProductFeed\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use TimothyDC\LightspeedEcomProductFeed\Actions\GenerateXmlFeedAction;
+use TimothyDC\LightspeedEcomProductFeed\Exceptions\InvalidFeedMapperException;
+use TimothyDC\LightspeedEcomProductFeed\Interfaces\ProductPayloadMappingInterface;
 use TimothyDC\LightspeedEcomProductFeed\Models\ProductFeed;
 
 class GenerateProductFeedCommand extends Command
@@ -34,6 +36,16 @@ class GenerateProductFeedCommand extends Command
             $this->error(sprintf('Product feed with ID %d not found.', $feedId));
 
             return 1;
+        }
+
+        if ($feed->mapping_class) {
+            $mapper = resolve($feed->mapping_class);
+
+            if (! $mapper instanceof ProductPayloadMappingInterface) {
+                throw new InvalidFeedMapperException($feed->mapping_class . ' must implement ' . ProductPayloadMappingInterface::class);
+            }
+
+            $this->generateXmlFeedAction->generateProductPayloadAction = $mapper;
         }
 
         // generate feed
