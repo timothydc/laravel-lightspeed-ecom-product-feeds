@@ -37,9 +37,9 @@ trait AskUntilValidTrait
     protected function validateInput($rules, $fieldName, $value): ?string
     {
         $validator = Validator::make([
-            $fieldName => $value
+            $fieldName => $value,
         ], [
-            $fieldName => $rules
+            $fieldName => $rules,
         ]);
 
         return $validator->fails()

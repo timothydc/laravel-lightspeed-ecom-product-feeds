@@ -77,7 +77,6 @@ class CreateProductFeedCommand extends Command
             // generate base URL and add language if the shop has multiple languages
             $shop = $this->lightspeedEcomApi->api()->shop->get();
             $baseUrl = 'https://' . $shop['mainDomain'] . '/' . (count($lsLanguages) > 1 ? $language . '/' : '');
-
         } catch (WebshopappApiException $e) {
             $this->error('Lightspeed eCom Error: ' . $e->getMessage());
 
