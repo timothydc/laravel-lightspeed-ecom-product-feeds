@@ -16,9 +16,9 @@
         "spatie/array-to-xml": "^2.0"
     },
     "require-dev": {
+        "mockery/mockery": "^1.4",
         "orchestra/testbench": "^5.3",
-        "phpunit/phpunit": "^9.2",
-        "mockery/mockery": "^1.4"
+        "phpunit/phpunit": "^9.2"
     },
     "scripts": {
         "test": "vendor/bin/phpunit"
