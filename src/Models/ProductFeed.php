@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $cron_expression
  * @property string $language
  * @property string $base_url
+ * @property string $mapping_class
  *
  * @method static \Illuminate\Database\Eloquent\Model|\TimothyDC\LightspeedEcomProductFeed\Models\ProductFeed find(mixed $id)
  */
