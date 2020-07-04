@@ -44,34 +44,7 @@ return [
 ];
 ```
 
-## Available commands
-
-Create a new product feed and answer the presented questions. Enter a valid [cron expression][link-crontab] when asked.
-```bash
-$ php artisan ecom-feed:create
-
-> Enter your webshop API key:
-> Enter your webshop API secret:
-> Enter your cron interval:
-> What language should your feed be in?
-```
-
-Show a list of all the currently created product feeds
-```bash
-$ php artisan ecom-feed:list
-```
-
-Remove a product feed.
-```bash
-$ php artisan ecom-feed:remove {product-feed-id}
-```
-
-Generate an XML by providing a product feed ID
-```bash
-$ php artisan ecom-feed:generate {product-feed-id}
-```
-
-## Custom product XML data structure
+## Custom feed mapping
 Create your own class and let it implement `ProductPayloadMappingInterface`.
 Take a look at `TimothyDC\LightspeedEcomProductFeed\Actions\GenerateProductPayloadAction` for some XML data structure inspiration.
 ```php
@@ -86,16 +59,34 @@ class CustomProductXml implements ProductPayloadMappingInterface
 }
 ```
 
-Bind your custom class via the `AppServiceProvider.php`
+## Available commands
 
-```php
-public function boot()
-{
-    $this->app->bind(
-        \TimothyDC\LightspeedEcomProductFeed\Interfaces\ProductPayloadMappingInterface::class,
-        \CustomProductXml::class
-    );
-}
+Create a new product feed and answer the presented questions. Enter a valid [cron expression][link-crontab] when asked.
+Use a FQN for your custom class.
+
+```bash
+$ php artisan ecom-feed:create
+
+> Enter your custom mapping class:
+> Enter your cron interval:
+> Enter your webshop API key:
+> Enter your webshop API secret:
+> What language should your feed be in?
+```
+
+Show a list of all the currently created product feeds.
+```bash
+$ php artisan ecom-feed:list
+```
+
+Remove a product feed.
+```bash
+$ php artisan ecom-feed:remove {product-feed-id}
+```
+
+Generate an XML by providing a product feed ID.
+```bash
+$ php artisan ecom-feed:generate {product-feed-id}
 ```
 
 ## Credits
