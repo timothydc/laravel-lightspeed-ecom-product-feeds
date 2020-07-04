@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace TimothyDC\LightspeedEcomProductFeed\Actions;
@@ -45,7 +46,6 @@ class GenerateXmlFeedAction
         $payload = [];
 
         while ($products = $this->lightspeedEcomApi->api()->catalog->get(null, $params)) {
-
             foreach ($products as $product) {
                 // generate product payload
                 $productPayload = $this->generateProductPayloadAction->execute($productFeed->base_url, $product);
@@ -55,7 +55,7 @@ class GenerateXmlFeedAction
                 }
             }
 
-            ++$params['page'];
+            $params['page']++;
         }
 
         return $payload;

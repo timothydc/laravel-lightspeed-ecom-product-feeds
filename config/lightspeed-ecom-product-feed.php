@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 return [
@@ -19,6 +20,6 @@ return [
         /*
          * Define the queue on which the jobs should be run
          */
-        'queue' => env('LS_PRODUCT_FEEDS_QUEUE', 'default')
+        'queue' => env('LS_PRODUCT_FEEDS_QUEUE', 'default'),
     ],
 ];

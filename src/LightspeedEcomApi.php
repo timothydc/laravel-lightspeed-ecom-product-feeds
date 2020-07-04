@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace TimothyDC\LightspeedEcomProductFeed;
@@ -23,7 +24,7 @@ class LightspeedEcomApi
         return $this->apiClient->withCredentials($this->key, $this->secret);
     }
 
-    public function setCredentials(string $key, string $secret): LightspeedEcomApi
+    public function setCredentials(string $key, string $secret): self
     {
         $this->key = $key;
         $this->secret = $secret;

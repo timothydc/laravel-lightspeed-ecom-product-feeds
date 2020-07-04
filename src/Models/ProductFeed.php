@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace TimothyDC\LightspeedEcomProductFeed\Models;
@@ -6,9 +7,8 @@ namespace TimothyDC\LightspeedEcomProductFeed\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class ProductFeed
+ * Class ProductFeed.
  *
- * @package TimothyDC\LightspeedEcomProductFeed\Models
  *
  * @property int $id
  * @property string $uuid
@@ -22,5 +22,4 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ProductFeed extends Model
 {
-
 }

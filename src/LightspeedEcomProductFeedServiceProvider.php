@@ -1,12 +1,16 @@
 <?php
+
 declare(strict_types=1);
 
 namespace TimothyDC\LightspeedEcomProductFeed;
 
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\ServiceProvider;
-use TimothyDC\LightspeedEcomProductFeed\Console\Commands\{CreateProductFeedCommand, GenerateProductFeedCommand, RemoveProductFeedCommand, ListProductFeedCommand};
 use TimothyDC\LightspeedEcomProductFeed\Actions\GenerateProductPayloadAction;
+use TimothyDC\LightspeedEcomProductFeed\Console\Commands\CreateProductFeedCommand;
+use TimothyDC\LightspeedEcomProductFeed\Console\Commands\GenerateProductFeedCommand;
+use TimothyDC\LightspeedEcomProductFeed\Console\Commands\ListProductFeedCommand;
+use TimothyDC\LightspeedEcomProductFeed\Console\Commands\RemoveProductFeedCommand;
 use TimothyDC\LightspeedEcomProductFeed\Console\Kernel;
 use TimothyDC\LightspeedEcomProductFeed\Interfaces\ProductPayloadMappingInterface;
 use TimothyDC\LightspeedEcomProductFeed\Services\ApiClient;
@@ -20,7 +24,7 @@ class LightspeedEcomProductFeedServiceProvider extends ServiceProvider
         ], ['lightspeed-ecom-product-feed', 'lightspeed-ecom-product-feed:config']);
 
         $this->publishes([
-            __DIR__ . '/../database/migrations/' => database_path('migrations')
+            __DIR__ . '/../database/migrations/' => database_path('migrations'),
         ], ['lightspeed-ecom-product-feed', 'lightspeed-ecom-product-feed:migrations']);
     }
 
@@ -51,6 +55,7 @@ class LightspeedEcomProductFeedServiceProvider extends ServiceProvider
 
         $this->app->singleton('lightspeed-ecom-product-feed.console.kernel', static function ($app) {
             $dispatcher = $app->make(Dispatcher::class);
+
             return new Kernel($app, $dispatcher);
         });
 

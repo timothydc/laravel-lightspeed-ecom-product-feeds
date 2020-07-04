@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace TimothyDC\LightspeedEcomProductFeed\Console\Commands;
@@ -16,12 +17,14 @@ class ListProductFeedCommand extends Command
     {
         $feeds = ProductFeed::all()->toArray();
 
-        if (!$feeds) {
+        if (! $feeds) {
             $this->info('No product feeds found.');
+
             return 0;
         }
 
         $this->table(array_keys(reset($feeds)), $feeds);
+
         return 0;
     }
 }

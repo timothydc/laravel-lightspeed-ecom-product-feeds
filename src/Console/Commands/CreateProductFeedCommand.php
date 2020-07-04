@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace TimothyDC\LightspeedEcomProductFeed\Console\Commands;
@@ -28,7 +29,7 @@ class CreateProductFeedCommand extends Command
     {
         $apiKey = $this->ask('Enter your webshop API key');
         $apiSecret = $this->ask('Enter your webshop API secret');
-        $cronExpression = $this->anticipate('Enter your cron interval', fn($input) => ['* * * * *', '*/30 * * * *', '0 */2 * * *', '0 */4 * * *', '0 0 * * *']);
+        $cronExpression = $this->anticipate('Enter your cron interval', fn ($input) => ['* * * * *', '*/30 * * * *', '0 */2 * * *', '0 */4 * * *', '0 0 * * *']);
 
         $productFeed = new ProductFeed();
         $productFeed->uuid = Uuid::uuid4();
@@ -52,9 +53,9 @@ class CreateProductFeedCommand extends Command
             // generate base URL and add language if the shop has multiple languages
             $shop = $this->lightspeedEcomApi->api()->shop->get();
             $baseUrl = 'https://' . $shop['mainDomain'] . '/' . (count($lsLanguages) > 1 ? $language . '/' : '');
-
         } catch (WebshopappApiException $e) {
             $this->error('Lightspeed eCom Error: ' . $e->getMessage());
+
             return 1;
         }
 
