@@ -6,7 +6,7 @@ namespace TimothyDC\LightspeedEcomProductFeed\Console\Commands;
 use Illuminate\Console\Command;
 use TimothyDC\LightspeedEcomProductFeed\Models\ProductFeed;
 
-class ShowProductFeedListCommand extends Command
+class ListProductFeedCommand extends Command
 {
     protected $signature = 'ecom-feed:list';
 
@@ -17,7 +17,7 @@ class ShowProductFeedListCommand extends Command
         $feeds = ProductFeed::all()->toArray();
 
         if (!$feeds) {
-            $this->info('No products feeds found.');
+            $this->info('No product feeds found.');
             return 0;
         }
 

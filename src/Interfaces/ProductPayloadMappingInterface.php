@@ -5,5 +5,5 @@ namespace TimothyDC\LightspeedEcomProductFeed\Interfaces;
 
 interface ProductPayloadMappingInterface
 {
-    public function execute(string $baseUrl, array $product): array;
+    public function execute(string $baseUrl, array $lightspeedData): array;
 }

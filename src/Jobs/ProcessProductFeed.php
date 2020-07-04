@@ -9,7 +9,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Artisan;
-use TimothyDC\LightspeedEcomProductFeed\Console\Commands\GenerateXmlFeedCommand;
+use TimothyDC\LightspeedEcomProductFeed\Console\Commands\GenerateProductFeedCommand;
 use TimothyDC\LightspeedEcomProductFeed\Models\ProductFeed;
 
 class ProcessProductFeed implements ShouldQueue
@@ -25,6 +25,6 @@ class ProcessProductFeed implements ShouldQueue
 
     public function handle(): void
     {
-        Artisan::call(GenerateXmlFeedCommand::class, ['productFeedId' => $this->productFeed->id]);
+        Artisan::call(GenerateProductFeedCommand::class, ['productFeedId' => $this->productFeed->id]);
     }
 }

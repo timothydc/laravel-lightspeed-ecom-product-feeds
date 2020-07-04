@@ -5,7 +5,7 @@ namespace TimothyDC\LightspeedEcomProductFeed;
 
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\ServiceProvider;
-use TimothyDC\LightspeedEcomProductFeed\Console\Commands\{CreateProductFeedCommand, GenerateXmlFeedCommand, RemoveProductFeedCommand, ShowProductFeedListCommand};
+use TimothyDC\LightspeedEcomProductFeed\Console\Commands\{CreateProductFeedCommand, GenerateProductFeedCommand, RemoveProductFeedCommand, ListProductFeedCommand};
 use TimothyDC\LightspeedEcomProductFeed\Actions\GenerateProductPayloadAction;
 use TimothyDC\LightspeedEcomProductFeed\Console\Kernel;
 use TimothyDC\LightspeedEcomProductFeed\Interfaces\ProductPayloadMappingInterface;
@@ -30,16 +30,16 @@ class LightspeedEcomProductFeedServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../config/lightspeed-ecom-product-feed.php', 'lightspeed-ecom-product-feed');
 
         // register commands
-        $this->app->bind('command.ecom-feed:list', ShowProductFeedListCommand::class);
+        $this->app->bind('command.ecom-feed:list', ListProductFeedCommand::class);
         $this->app->bind('command.ecom-feed:create', CreateProductFeedCommand::class);
         $this->app->bind('command.ecom-feed:remove', RemoveProductFeedCommand::class);
-        $this->app->bind('command.ecom-feed:generate-xml', GenerateXmlFeedCommand::class);
+        $this->app->bind('command.ecom-feed:generate', GenerateProductFeedCommand::class);
 
         $this->commands([
             'command.ecom-feed:list',
             'command.ecom-feed:create',
             'command.ecom-feed:remove',
-            'command.ecom-feed:generate-xml',
+            'command.ecom-feed:generate',
         ]);
 
         // register services

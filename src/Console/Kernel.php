@@ -5,7 +5,7 @@ namespace TimothyDC\LightspeedEcomProductFeed\Console;
 
 use App\Console\Kernel as ConsoleKernel;
 use Illuminate\Console\Scheduling\Schedule;
-use TimothyDC\LightspeedEcomProductFeed\Console\Commands\GenerateXmlFeedCommand;
+use TimothyDC\LightspeedEcomProductFeed\Console\Commands\GenerateProductFeedCommand;
 use TimothyDC\LightspeedEcomProductFeed\Jobs\ProcessProductFeed;
 use TimothyDC\LightspeedEcomProductFeed\Models\ProductFeed;
 
@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
                 $schedule->job(new ProcessProductFeed($productFeed), config('lightspeed-ecom-product-feed.scheduled_tasks.queue'))->cron($productFeed->cron_expression);
             } else {
                 // process via direct command
-                $schedule->command(GenerateXmlFeedCommand::class, [$productFeed->id])->cron($productFeed->cron_expression);
+                $schedule->command(GenerateProductFeedCommand::class, [$productFeed->id])->cron($productFeed->cron_expression);
             }
         }
     }

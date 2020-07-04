@@ -54,7 +54,7 @@ class CreateProductFeedCommand extends Command
             $baseUrl = 'https://' . $shop['mainDomain'] . '/' . (count($lsLanguages) > 1 ? $language . '/' : '');
 
         } catch (WebshopappApiException $e) {
-            $this->error($e->getMessage());
+            $this->error('Lightspeed eCom Error: ' . $e->getMessage());
             return 1;
         }
 

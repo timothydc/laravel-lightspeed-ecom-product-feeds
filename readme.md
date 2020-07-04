@@ -68,7 +68,7 @@ $ php artisan ecom-feed:remove {product-feed-id}
 
 Generate an XML by providing a product feed ID
 ```bash
-$ php artisan ecom-feed:generate-xml {product-feed-id}
+$ php artisan ecom-feed:generate {product-feed-id}
 ```
 
 ## Custom product XML data structure

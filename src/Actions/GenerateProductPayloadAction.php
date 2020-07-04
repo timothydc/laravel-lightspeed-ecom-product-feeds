@@ -8,46 +8,85 @@ use TimothyDC\LightspeedEcomProductFeed\Interfaces\ProductPayloadMappingInterfac
 
 class GenerateProductPayloadAction implements ProductPayloadMappingInterface
 {
-    public function execute(string $baseUrl, array $product): array
+    protected string $baseUrl;
+    protected array $feed = [];
+
+    public function execute(string $baseUrl, array $lightspeedData): array
     {
-        if ($product['isVisible'] === false) {
+        $this->baseUrl = $baseUrl;
+
+        if ($lightspeedData['isVisible'] === false) {
             return [];
         }
 
-        $mappedProduct = [
-            'product_id' => $product['id'],
-            'update_date' => Carbon::createFromTimeString($product['updatedAt'])->toDateTimeString(),
-            'create_date' => Carbon::createFromTimeString($product['createdAt'])->toDateTimeString(),
-            'is_featured' => $product['isFeatured'],
-            'hits' => $product['hits'],
-            'data01' => $product['data01'],
-            'data02' => $product['data02'],
-            'data03' => $product['data03'],
-            'url' => $baseUrl . $product['url'] . '.html',
-            'title' => ['_cdata' => $product['title']],
-            'fulltitle' => ['_cdata' => $product['fulltitle']],
-            'description' => ['_cdata' => $product['description']],
-            'content' => ['_cdata' => $product['content']],
-            'brand' => $product['brand']['title'] ?? '',
-            'supplier' => $product['supplier']['title'] ?? '',
-            'default_image_thumb' => $product['image']['thumb'] ?? '',
-            'default_image_src' => $product['image']['src'] ?? '',
+        // add product data
+        $this->generateProductInfo($lightspeedData);
+
+        // add image data
+        $this->generateImageInfo($lightspeedData);
+
+        // add category data
+        $this->generateCategoryInfo($lightspeedData);
+
+        // add variant data
+        $this->generateVariantInfo($lightspeedData);
+
+        // add filter data
+        $this->generateFilterInfo($lightspeedData);
+
+        return $this->feed;
+    }
+
+    protected function convertDate(string $date): string
+    {
+        return Carbon::createFromTimeString($date)->toDateTimeString();
+    }
+
+    protected function generateProductInfo(array $lightspeedData): void
+    {
+        $this->feed = [
+            'product_id' => $lightspeedData['id'],
+            'update_date' => $this->convertDate($lightspeedData['updatedAt']),
+            'create_date' => $this->convertDate($lightspeedData['createdAt']),
+            'is_featured' => $lightspeedData['isFeatured'],
+            'hits' => $lightspeedData['hits'],
+            'data01' => $lightspeedData['data01'],
+            'data02' => $lightspeedData['data02'],
+            'data03' => $lightspeedData['data03'],
+            'url' => $this->baseUrl . $lightspeedData['url'] . '.html',
+            'title' => ['_cdata' => $lightspeedData['title']],
+            'fulltitle' => ['_cdata' => $lightspeedData['fulltitle']],
+            'description' => ['_cdata' => $lightspeedData['description']],
+            'content' => ['_cdata' => $lightspeedData['content']],
+            'brand' => $lightspeedData['brand']['title'] ?? '',
+            'supplier' => $lightspeedData['supplier']['title'] ?? '',
+            'default_image_thumb' => $lightspeedData['image']['thumb'] ?? '',
+            'default_image_src' => $lightspeedData['image']['src'] ?? '',
         ];
+    }
 
-        foreach ($product['images'] as $image) {
-            $mappedProduct['images']['image'][] = ['thumb' => $image['thumb'], 'src' => $image['src']];
+    protected function generateImageInfo(array $lightspeedData): void
+    {
+        foreach ($lightspeedData['images'] as $image) {
+            $this->feed['images']['image'][] = ['thumb' => $image['thumb'], 'src' => $image['src']];
         }
+    }
 
-        foreach ($product['categories'] as $category) {
-            $mappedProduct['categories']['category'][] = ['title' => $category['title'], 'url' => ($baseUrl . $category['url']), 'visible' => $category['isVisible']];
+    protected function generateCategoryInfo(array $lightspeedData): void
+    {
+        foreach ($lightspeedData['categories'] as $category) {
+            $this->feed['categories']['category'][] = ['title' => $category['title'], 'url' => ($this->baseUrl . $category['url']), 'visible' => $category['isVisible']];
         }
+    }
 
-        foreach ($product['variants'] as $variant) {
-            $mappedProduct['variants']['variant'][] = [
+    protected function generateVariantInfo(array $lightspeedData): void
+    {
+        foreach ($lightspeedData['variants'] as $variant) {
+            $this->feed['variants']['variant'][] = [
                 'variant_id' => $variant['id'],
-                'update_date' => Carbon::createFromTimeString($variant['updatedAt'])->toDateTimeString(),
-                'create_date' => Carbon::createFromTimeString($variant['createdAt'])->toDateTimeString(),
-                'url' => $baseUrl . $product['url'] . '.html?id=' . $variant['id'],
+                'update_date' => $this->convertDate($variant['updatedAt']),
+                'create_date' => $this->convertDate($variant['createdAt']),
+                'url' => $this->baseUrl . $lightspeedData['url'] . '.html?id=' . $variant['id'],
                 'sort_order' => $variant['sortOrder'],
                 'title' => $variant['title'],
                 'article_code' => $variant['articleCode'],
@@ -65,17 +104,18 @@ class GenerateProductPayloadAction implements ProductPayloadMappingInterface
                 'stock_buy_maximum' => $variant['stockBuyMaximum'],
             ];
         }
+    }
 
-        foreach ($product['filters'] as $filter) {
+    protected function generateFilterInfo(array $lightspeedData): void
+    {
+        foreach ($lightspeedData['filters'] as $filter) {
             $productFilter = ['title' => $filter['title']];
 
             foreach ($filter['values'] as $filterValue) {
                 $productFilter['values']['value'][] = ['title' => $filterValue['title']];
             }
 
-            $mappedProduct['filters']['filter'][] = $productFilter;
+            $this->feed['filters']['filter'][] = $productFilter;
         }
-
-        return $mappedProduct;
     }
 }

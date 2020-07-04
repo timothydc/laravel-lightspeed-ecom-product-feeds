@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Storage;
 use TimothyDC\LightspeedEcomProductFeed\Actions\GenerateXmlFeedAction;
 use TimothyDC\LightspeedEcomProductFeed\Models\ProductFeed;
 
-class GenerateXmlFeedCommand extends Command
+class GenerateProductFeedCommand extends Command
 {
-    protected $signature = 'ecom-feed:generate-xml {productFeedId}';
+    protected $signature = 'ecom-feed:generate {productFeedId}';
 
     protected $description = 'Generate XML feed';
 
@@ -37,7 +37,9 @@ class GenerateXmlFeedCommand extends Command
         // generate feed
         $this->generateXmlFeedAction->execute($feed);
 
-        $this->info('Feed successfully created: ' . Storage::disk(config('lightspeed-ecom-product-feed.feed_disk'))->path($feed->uuid . '.xml'));
+        $this->info('Feed successfully created!');
+        $this->info('Local URL: ' . Storage::disk(config('lightspeed-ecom-product-feed.feed_disk'))->path($feed->uuid . '.xml'));
+        $this->info('Public URL: ' . Storage::disk(config('lightspeed-ecom-product-feed.feed_disk'))->url($feed->uuid . '.xml'));
 
         return 0;
     }
