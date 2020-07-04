@@ -1,5 +1,6 @@
+preset: recommended
 enabled:
-#  - align_phpdoc
+  - align_phpdoc
   - alpha_ordered_imports
   - array_indentation
   - binary_operator_spaces
