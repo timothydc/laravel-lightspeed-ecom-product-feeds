@@ -79,6 +79,11 @@ Show a list of all the currently created product feeds.
 $ php artisan ecom-feed:list
 ```
 
+Update a product feed.
+```bash
+$ php artisan ecom-feed:update {product-feed-id}
+```
+
 Remove a product feed.
 ```bash
 $ php artisan ecom-feed:remove {product-feed-id}
