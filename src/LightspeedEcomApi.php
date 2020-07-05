@@ -22,7 +22,7 @@ class LightspeedEcomApi
 
     public function api(): WebshopappApiClient
     {
-        if (!$this->key || !$this->secret) {
+        if (! $this->key || ! $this->secret) {
             throw new LightspeedEcomApiException(['No API credentials set via "setCredentials($key, $secret)"-method']);
         }
 

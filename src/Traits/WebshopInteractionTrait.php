@@ -31,6 +31,7 @@ trait WebshopInteractionTrait
     {
         // generate base URL and add language if the shop has multiple languages
         $shop = $this->lightspeedEcomApi->api()->shop->get();
+
         return 'https://' . $shop['mainDomain'] . '/' . (count($languages) > 1 ? $userPreferedLanguage . '/' : '');
     }
 }
