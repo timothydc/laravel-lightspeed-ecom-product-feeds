@@ -15,7 +15,17 @@ class ListProductFeedCommand extends Command
 
     public function handle(): int
     {
-        $feeds = ProductFeed::all()->toArray();
+        $feeds = ProductFeed::all([
+            'id',
+            'uuid',
+            'language',
+            'cron_expression',
+            'base_url',
+            'api_key',
+            'api_secret',
+            'mapping_class',
+            'updated_at',
+        ])->toArray();
 
         if (! $feeds) {
             $this->info('No product feeds found.');

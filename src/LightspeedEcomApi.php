@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace TimothyDC\LightspeedEcomProductFeed;
 
+use TimothyDC\LightspeedEcomProductFeed\Exceptions\LightspeedEcomApiException;
 use TimothyDC\LightspeedEcomProductFeed\Services\ApiClient;
 use WebshopappApiClient;
 
@@ -21,6 +22,10 @@ class LightspeedEcomApi
 
     public function api(): WebshopappApiClient
     {
+        if (! $this->key || ! $this->secret) {
+            throw new LightspeedEcomApiException(['No API credentials set via "setCredentials($key, $secret)"-method']);
+        }
+
         return $this->apiClient->withCredentials($this->key, $this->secret);
     }
 

@@ -17,16 +17,12 @@ class GenerateProductFeedCommand extends Command
 
     protected $description = 'Generate XML feed';
 
-    private GenerateXmlFeedAction $generateXmlFeedAction;
-
-    public function __construct(GenerateXmlFeedAction $generateXmlFeedAction)
+    public function __construct()
     {
         parent::__construct();
-
-        $this->generateXmlFeedAction = $generateXmlFeedAction;
     }
 
-    public function handle(): int
+    public function handle(GenerateXmlFeedAction $generateXmlFeedAction): int
     {
         // get product feed
         $feedId = $this->argument('productFeedId');
@@ -45,11 +41,11 @@ class GenerateProductFeedCommand extends Command
                 throw new InvalidFeedMapperException($feed->mapping_class . ' must implement ' . ProductPayloadMappingInterface::class);
             }
 
-            $this->generateXmlFeedAction->generateProductPayloadAction = $mapper;
+            $generateXmlFeedAction->generateProductPayloadAction = $mapper;
         }
 
         // generate feed
-        $this->generateXmlFeedAction->execute($feed);
+        $generateXmlFeedAction->execute($feed);
 
         $this->info('Feed successfully created!');
         $this->info('Local URL: ' . Storage::disk(config('lightspeed-ecom-product-feed.feed_disk'))->path($feed->uuid . '.xml'));

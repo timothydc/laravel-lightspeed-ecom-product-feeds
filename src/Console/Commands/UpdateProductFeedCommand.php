@@ -9,31 +9,42 @@ use TimothyDC\LightspeedEcomProductFeed\Actions\GenerateProductPayloadAction;
 use TimothyDC\LightspeedEcomProductFeed\Actions\SaveProductFeedAction;
 use TimothyDC\LightspeedEcomProductFeed\Exceptions\LightspeedEcomApiException;
 use TimothyDC\LightspeedEcomProductFeed\LightspeedEcomApi;
+use TimothyDC\LightspeedEcomProductFeed\Models\ProductFeed;
 use TimothyDC\LightspeedEcomProductFeed\Traits\AskFeedQuestionsTrait;
 use WebshopappApiException;
 
-class CreateProductFeedCommand extends Command
+class UpdateProductFeedCommand extends Command
 {
     use AskFeedQuestionsTrait;
 
-    protected $signature = 'ecom-feed:create';
+    protected $signature = 'ecom-feed:update {productFeedId}';
 
-    protected $description = 'Create a new product feed definition';
+    protected $description = 'Update a product feed';
 
     public function handle(LightspeedEcomApi $lightspeedEcomApi, SaveProductFeedAction $saveProductFeedAction): int
     {
+        // get product feed
+        $feedId = $this->argument('productFeedId');
+        $feed = ProductFeed::find($feedId);
+
+        if (! $feed) {
+            $this->error(sprintf('Product feed with ID %d not found.', $feedId));
+
+            return 1;
+        }
+
         $this->lightspeedEcomApi = $lightspeedEcomApi;
 
-        $mappingClass = $this->askMappingClass();
-        $cronExpression = $this->askCronExpression();
-        $apiKey = $this->askApiKey();
-        $apiSecret = $this->askApiSecret();
+        $mappingClass = $this->askMappingClass($feed);
+        $cronExpression = $this->askCronExpression($feed);
+        $apiKey = $this->askApiKey($feed);
+        $apiSecret = $this->askApiSecret($feed);
 
-        // set freshly entered credentials
+        // set credentials
         $this->lightspeedEcomApi->setCredentials($apiKey, $apiSecret);
 
         try {
-            $language = $this->askLanguage();
+            $language = $this->askLanguage($feed);
 
             // generate base URL and add language if the shop has multiple languages
             $baseUrl = $this->getWebshopUrl($this->getWebshopLanguageCodes(), $language);
@@ -50,9 +61,9 @@ class CreateProductFeedCommand extends Command
             'api_key' => $apiKey,
             'api_secret' => $apiSecret,
             'mapping_class' => $mappingClass === GenerateProductPayloadAction::class ? null : $mappingClass, // set null when using the default
-        ]);
+        ], $feed);
 
-        $this->info('New product feed created with ID ' . $feed->id);
+        $this->info('Product feed with ID ' . $feed->id . ' has been updated.');
 
         return 0;
     }
