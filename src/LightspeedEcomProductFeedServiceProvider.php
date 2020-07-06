@@ -28,11 +28,9 @@ class LightspeedEcomProductFeedServiceProvider extends ServiceProvider
         ], ['lightspeed-ecom-product-feed', 'lightspeed-ecom-product-feed:config']);
 
         // boot migrations
-        if (! class_exists('CreateProductFeedTable')) {
-            $this->publishes([
-                __DIR__ . '/../database/migrations/create_product_feed_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_product_feed_table.php'),
-            ], ['lightspeed-ecom-product-feed', 'lightspeed-ecom-product-feed:migrations']);
-        }
+        $this->publishes([
+            __DIR__ . '/../database/migrations/create_product_feed_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_product_feed_table.php'),
+        ], ['lightspeed-ecom-product-feed', 'lightspeed-ecom-product-feed:migrations']);
 
         // boot scheduled tasks
         $this->app->booted(function () {
