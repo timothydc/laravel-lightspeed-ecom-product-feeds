@@ -24,4 +24,9 @@ class CreateProductFeedTable extends Migration
             $table->timestamps();
         });
     }
+
+    public function down()
+    {
+        Schema::dropIfExists('product_feeds');
+    }
 }
