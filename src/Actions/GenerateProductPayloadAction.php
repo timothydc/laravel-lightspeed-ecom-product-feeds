@@ -35,6 +35,12 @@ class GenerateProductPayloadAction implements ProductPayloadMappingInterface
         // add filter data
         $this->generateFilterInfo($lightspeedData);
 
+        // add specification data
+        $this->generateSpecificationInfo($lightspeedData);
+
+        // add custom mapping dummy method
+        $this->generateCustomInfo($lightspeedData);
+
         return $this->feed;
     }
 
@@ -118,5 +124,16 @@ class GenerateProductPayloadAction implements ProductPayloadMappingInterface
 
             $this->feed['filters']['filter'][] = $productFilter;
         }
+    }
+
+    protected function generateSpecificationInfo(array $lightspeedData): void
+    {
+        foreach ($lightspeedData['specifications'] as $specification) {
+            $this->feed['specifications']['specification'][] = ['title' => $specification['name'], 'value' => $specification['value']];
+        }
+    }
+
+    protected function generateCustomInfo(array $lightspeedData): void
+    {
     }
 }
