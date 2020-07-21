@@ -106,7 +106,7 @@ MIT. Please see the [license file](license.md) for more information.
 [link-crontab]: https://crontab.guru/
 [ico-version]: https://img.shields.io/packagist/v/timothydc/laravel-lightspeed-ecom-product-feeds.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/timothydc/laravel-lightspeed-ecom-product-feeds.svg?style=flat-square
-[ico-github-actions]: https://img.shields.io/github/workflow/status/timothydc/laravel-lightspeed-ecom-product-feeds/run-tests?label=tests
+[ico-github-actions]: https://img.shields.io/github/workflow/status/timothydc/laravel-lightspeed-ecom-product-feeds/run-tests?label=tests&style=flat-square
 [ico-styleci]: https://styleci.io/repos/275463792/shield
 
 [link-packagist]: https://packagist.org/packages/timothydc/laravel-lightspeed-ecom-product-feeds
