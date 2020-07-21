@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace TimothyDC\LightspeedEcomProductFeed\Tests\Feature\Commands;
 
-use Ramsey\Uuid\Uuid;
 use TimothyDC\LightspeedEcomProductFeed\LightspeedEcomApi;
 use TimothyDC\LightspeedEcomProductFeed\Models\ProductFeed;
 use TimothyDC\LightspeedEcomProductFeed\Tests\TestCase;

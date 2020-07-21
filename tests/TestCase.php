@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace TimothyDC\LightspeedEcomProductFeed\Tests;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Orchestra\Testbench\TestCase as Orchestra;
 use TimothyDC\LightspeedEcomProductFeed\LightspeedEcomProductFeedServiceProvider;
 
