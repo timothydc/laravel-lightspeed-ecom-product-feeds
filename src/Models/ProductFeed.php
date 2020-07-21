@@ -23,12 +23,5 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ProductFeed extends Model
 {
-    protected $fillable = [
-        'language',
-        'cron_expression',
-        'base_url',
-        'api_key',
-        'api_secret',
-        'mapping_class',
-    ];
+    protected $guarded = [];
 }
