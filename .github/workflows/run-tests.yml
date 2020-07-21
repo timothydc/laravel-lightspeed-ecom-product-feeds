@@ -5,6 +5,17 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ${{ matrix.os }}
+
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_DATABASE: laravel_test_db
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+        ports:
+          - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
     strategy:
       fail-fast: true
       matrix:
@@ -38,7 +49,7 @@ jobs:
       - name: Create database
         run: |
           sudo /etc/init.d/mysql start
-          mysql -u root -proot -e 'CREATE DATABASE IF NOT EXISTS laravel_test_db;'
+          mysql -u root -proot -e 'CREATE DATABASE IF NOT EXISTS ;'
 
       - name: Install dependencies
         run: |
@@ -49,4 +60,3 @@ jobs:
         run: vendor/bin/phpunit
         env:
           DB_PORT: ${{ job.service.mysql.ports[3306] }}
-          DB_PASSWORD: root
