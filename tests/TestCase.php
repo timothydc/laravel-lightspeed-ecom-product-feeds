@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace TimothyDC\LightspeedEcomProductFeed\Tests;
 
+use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase as Orchestra;
 use TimothyDC\LightspeedEcomProductFeed\LightspeedEcomProductFeedServiceProvider;
 
@@ -25,12 +26,7 @@ class TestCase extends Orchestra
 
     public function getEnvironmentSetUp($app): void
     {
-        $app['config']->set('database.default', 'sqlite');
-        $app['config']->set('database.connections.sqlite', [
-            'driver' => 'sqlite',
-            'database' => ':memory:',
-            'prefix' => '',
-        ]);
+        Schema::dropAllTables();
 
         include_once __DIR__.'/../database/migrations/create_product_feed_table.php.stub';
         (new \CreateProductFeedTable())->up();
