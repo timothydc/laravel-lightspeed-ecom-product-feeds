@@ -20,24 +20,6 @@ use TimothyDC\LightspeedEcomProductFeed\Services\ApiClient;
 
 class LightspeedEcomProductFeedServiceProvider extends ServiceProvider
 {
-    public function boot(): void
-    {
-        // boot config
-        $this->publishes([
-            __DIR__ . '/../config/lightspeed-ecom-product-feed.php' => config_path('lightspeed-ecom-product-feed.php'),
-        ], ['lightspeed-ecom-product-feed', 'lightspeed-ecom-product-feed:config']);
-
-        // boot migrations
-        $this->publishes([
-            __DIR__ . '/../database/migrations/create_product_feed_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_product_feed_table.php'),
-        ], ['lightspeed-ecom-product-feed', 'lightspeed-ecom-product-feed:migrations']);
-
-        // boot scheduled tasks
-        if (Schema::hasTable('product_feeds') === true) {
-            $this->app->booted(fn () => $this->addScheduledTasks($this->app->make(Schedule::class)));
-        }
-    }
-
     public function register(): void
     {
         // register config
@@ -67,6 +49,42 @@ class LightspeedEcomProductFeedServiceProvider extends ServiceProvider
 
         // register product mapping class
         $this->app->bind(ProductPayloadMappingInterface::class, GenerateProductPayloadAction::class);
+    }
+
+    public function boot(): void
+    {
+        if ($this->app->runningInConsole()) {
+            $this->loadConfig()
+                ->loadMigrations()
+                ->loadScheduledTasks();
+        }
+    }
+
+    protected function loadConfig(): self
+    {
+        $this->publishes([
+            __DIR__ . '/../config/lightspeed-ecom-product-feed.php' => config_path('lightspeed-ecom-product-feed.php'),
+        ], ['lightspeed-ecom-product-feed', 'lightspeed-ecom-product-feed:config']);
+
+        return $this;
+    }
+
+    protected function loadMigrations(): self
+    {
+        $this->publishes([
+            __DIR__ . '/../database/migrations/create_product_feed_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_product_feed_table.php'),
+        ], ['lightspeed-ecom-product-feed', 'lightspeed-ecom-product-feed:migrations']);
+
+        return $this;
+    }
+
+    protected function loadScheduledTasks(): self
+    {
+        if (Schema::hasTable('product_feeds') === true) {
+            $this->app->booted(fn () => $this->addScheduledTasks($this->app->make(Schedule::class)));
+        }
+
+        return $this;
     }
 
     /**
