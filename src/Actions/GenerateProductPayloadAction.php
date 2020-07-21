@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace TimothyDC\LightspeedEcomProductFeed\Actions;
 
-use TimothyDC\LightspeedEcomProductFeed\Interfaces\ProductPayloadMappingInterface;
 use Illuminate\Support\Carbon;
-use Exception;
+use TimothyDC\LightspeedEcomProductFeed\Interfaces\ProductPayloadMappingInterface;
 
 class GenerateProductPayloadAction implements ProductPayloadMappingInterface
 {
