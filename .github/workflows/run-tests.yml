@@ -19,7 +19,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest]
         php: [7.4]
         laravel: [7.*]
         dependency-version: [prefer-lowest, prefer-stable]
@@ -45,11 +45,6 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
           coverage: none
-
-      - name: Create database
-        run: |
-          sudo /etc/init.d/mysql start
-          mysql -u root -proot -e 'CREATE DATABASE IF NOT EXISTS ;'
 
       - name: Install dependencies
         run: |
