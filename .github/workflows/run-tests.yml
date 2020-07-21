@@ -5,7 +5,6 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ${{ matrix.os }}
-
     strategy:
       fail-fast: true
       matrix:
@@ -39,7 +38,7 @@ jobs:
       - name: Create database
         run: |
           sudo /etc/init.d/mysql start
-          mysql  -u root -proot -e 'CREATE DATABASE IF NOT EXISTS laravel_test_db;'
+          mysql -u root -proot -e 'CREATE DATABASE IF NOT EXISTS laravel_test_db;'
 
       - name: Install dependencies
         run: |
