@@ -6,16 +6,6 @@ jobs:
   test:
     runs-on: ${{ matrix.os }}
 
-    services:
-      mysql:
-        image: mysql:5.7
-        env:
-          MYSQL_DATABASE: laravel_test_db
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-        ports:
-          - 3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
     strategy:
       fail-fast: true
       matrix:
@@ -46,12 +36,18 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
           coverage: none
 
+      - name: Create database
+        run: |
+          sudo /etc/init.d/mysql start
+          mysql  -u root -proot -e 'CREATE DATABASE IF NOT EXISTS laravel_test_db;'
+
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "orchestra/database:${{ matrix.testbench }}" --no-interaction --no-update
+          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
           composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
 
       - name: Execute tests
         run: vendor/bin/phpunit
         env:
           DB_PORT: ${{ job.service.mysql.ports[3306] }}
+          DB_PASSWORD: root
