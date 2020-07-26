@@ -62,7 +62,7 @@ abstract class Feed implements ProductPayloadMappingInterface
             'product_id' => $lightspeedData['id'],
             'update_date' => $this->convertDate($lightspeedData['updatedAt']),
             'create_date' => $this->convertDate($lightspeedData['createdAt']),
-            'is_featured' => $lightspeedData['isFeatured'],
+            'is_featured' => $lightspeedData['isFeatured'] ? 1 : 0,
             'hits' => $lightspeedData['hits'],
             'data01' => $lightspeedData['data01'],
             'data02' => $lightspeedData['data02'],
