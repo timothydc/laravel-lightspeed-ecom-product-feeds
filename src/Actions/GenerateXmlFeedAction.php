@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace TimothyDC\LightspeedEcomProductFeed\Actions;
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 use Spatie\ArrayToXml\ArrayToXml;
 use TimothyDC\LightspeedEcomProductFeed\Interfaces\ProductPayloadMappingInterface;
@@ -64,7 +65,7 @@ class GenerateXmlFeedAction
     protected function convertArrayToXml(array $payload): string
     {
         $arrayToXml = new ArrayToXml($payload, $this->rootElementName);
-        $arrayToXml->setDomProperties(['formatOutput' => true]);
+        $arrayToXml->setDomProperties(['formatOutput' => App::environment('production') === false]);
 
         return $arrayToXml->toXml();
     }
