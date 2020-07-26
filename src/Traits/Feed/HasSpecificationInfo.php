@@ -22,7 +22,7 @@ trait HasSpecificationInfo
     {
         return [
             'title' => ['_cdata' => $specification['name']],
-            'value' => ['_cdata' => $specification['value']]
+            'value' => ['_cdata' => $specification['value']],
         ];
     }
 }
