@@ -8,8 +8,18 @@ trait HasImageInfo
 {
     protected function generateImageInfo(array $lightspeedData): void
     {
-        foreach ($lightspeedData['images'] as $image) {
-            $this->feed['images']['image'][] = ['thumb' => $image['thumb'], 'src' => $image['src']];
+        foreach ($this->getImages($lightspeedData) as $image) {
+            $this->feed['images']['image'][] = $this->imageFields($image);
         }
+    }
+
+    protected function getImages(array $lightspeedData): array
+    {
+        return $lightspeedData['images'];
+    }
+
+    protected function imageFields(array $image): array
+    {
+        return ['thumb' => $image['thumb'], 'src' => $image['src']];
     }
 }

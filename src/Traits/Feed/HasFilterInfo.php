@@ -12,7 +12,7 @@ trait HasFilterInfo
             $productFilter = ['title' => $filter['title']];
 
             foreach ($filter['values'] as $filterValue) {
-                $productFilter['values']['value'][] = ['title' => $filterValue['title']];
+                $productFilter['values']['value'][] = ['_cdata' => $filterValue['title']];
             }
 
             $this->feed['filters']['filter'][] = $productFilter;

@@ -22,8 +22,9 @@ trait HasCategoryTreeStructure
 
             // loop through parents and add its children
             foreach ($parents as $index => $parent) {
-                $childCategories = $children->filter(fn ($category) => Str::contains($category['url'], $parent['url']));
-                $parent['subCategories']['category'][] = $childCategories->toArray();
+                $parent['sub_categories']['category'][] = $children
+                    ->filter(fn ($category) => Str::contains($category['url'], $parent['url']))
+                    ->toArray();
 
                 // update parent data
                 $categories->put($index, $parent);

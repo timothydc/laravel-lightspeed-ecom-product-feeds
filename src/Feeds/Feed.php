@@ -72,8 +72,8 @@ abstract class Feed implements ProductPayloadMappingInterface
             'fulltitle' => ['_cdata' => $lightspeedData['fulltitle']],
             'description' => ['_cdata' => $lightspeedData['description']],
             'content' => ['_cdata' => $lightspeedData['content']],
-            'brand' => $lightspeedData['brand']['title'] ?? '',
-            'supplier' => $lightspeedData['supplier']['title'] ?? '',
+            'brand' => ['_cdata' => $lightspeedData['brand']['title'] ?? ''],
+            'supplier' => ['_cdata' => $lightspeedData['supplier']['title'] ?? ''],
             'default_image_thumb' => $lightspeedData['image']['thumb'] ?? '',
             'default_image_src' => $lightspeedData['image']['src'] ?? '',
         ];
