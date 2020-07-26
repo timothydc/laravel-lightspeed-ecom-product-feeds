@@ -7,7 +7,6 @@ namespace TimothyDC\LightspeedEcomProductFeed;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-use TimothyDC\LightspeedEcomProductFeed\Actions\GenerateProductPayloadAction;
 use TimothyDC\LightspeedEcomProductFeed\Console\Commands\CreateProductFeedCommand;
 use TimothyDC\LightspeedEcomProductFeed\Console\Commands\GenerateProductFeedCommand;
 use TimothyDC\LightspeedEcomProductFeed\Console\Commands\ListProductFeedCommand;
@@ -17,6 +16,7 @@ use TimothyDC\LightspeedEcomProductFeed\Interfaces\ProductPayloadMappingInterfac
 use TimothyDC\LightspeedEcomProductFeed\Jobs\ProcessProductFeed;
 use TimothyDC\LightspeedEcomProductFeed\Models\ProductFeed;
 use TimothyDC\LightspeedEcomProductFeed\Services\ApiClient;
+use TimothyDC\LightspeedEcomProductFeed\Support\Feeds\StandardFeed;
 
 class LightspeedEcomProductFeedServiceProvider extends ServiceProvider
 {
@@ -48,7 +48,7 @@ class LightspeedEcomProductFeedServiceProvider extends ServiceProvider
         $this->app->alias(LightspeedEcomApi::class, 'lightspeed-ecom-api');
 
         // register product mapping class
-        $this->app->bind(ProductPayloadMappingInterface::class, GenerateProductPayloadAction::class);
+        $this->app->bind(ProductPayloadMappingInterface::class, StandardFeed::class);
     }
 
     public function boot(): void
