@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 
 trait HasCategoryTreeStructure
 {
+    use HasCategoryInfo;
+
     protected function generateCategoryInfo(array $lightspeedData): void
     {
         // only get a select set of category fields
