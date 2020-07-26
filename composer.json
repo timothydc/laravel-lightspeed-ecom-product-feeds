@@ -9,7 +9,7 @@
         }
     ],
     "homepage": "https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds",
-    "keywords": ["timothydc", "lightspeed", "eCommerce", "laravel", "feed"],
+    "keywords": ["timothydc", "lightspeed", "eCommerce", "laravel", "feed", "sooqr"],
     "require": {
         "php": "^7.4",
         "seoshop/seoshop-php": "^1.9",
