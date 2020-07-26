@@ -46,7 +46,7 @@ return [
 
 ## Custom feed mapping
 Create your own class and let it implement `ProductPayloadMappingInterface`.
-Take a look at `TimothyDC\LightspeedEcomProductFeed\Actions\GenerateProductPayloadAction` for some XML data structure inspiration.
+Take a look at `TimothyDC\LightspeedEcomProductFeed\Support\Feeds\StandardFeed` for some XML data structure inspiration.
 ```php
 use TimothyDC\LightspeedEcomProductFeed\Interfaces\ProductPayloadMappingInterface;
 
