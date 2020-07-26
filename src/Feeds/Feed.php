@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace TimothyDC\LightspeedEcomProductFeed\Support\Feeds;
+namespace TimothyDC\LightspeedEcomProductFeed\Feeds;
 
 use Illuminate\Support\Carbon;
 use TimothyDC\LightspeedEcomProductFeed\Interfaces\ProductPayloadMappingInterface;

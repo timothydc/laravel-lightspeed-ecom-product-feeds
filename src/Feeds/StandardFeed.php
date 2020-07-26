@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace TimothyDC\LightspeedEcomProductFeed\Support\Feeds;
+namespace TimothyDC\LightspeedEcomProductFeed\Feeds;
 
 use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasCategoryInfo;
 use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasFilterInfo;

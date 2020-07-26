@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace TimothyDC\LightspeedEcomProductFeed\Traits;
 
+use TimothyDC\LightspeedEcomProductFeed\Feeds\StandardFeed;
 use TimothyDC\LightspeedEcomProductFeed\Models\ProductFeed;
-use TimothyDC\LightspeedEcomProductFeed\Support\Feeds\StandardFeed;
 
 trait AskFeedQuestionsTrait
 {

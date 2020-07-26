@@ -7,8 +7,8 @@ namespace TimothyDC\LightspeedEcomProductFeed\Console\Commands;
 use Illuminate\Console\Command;
 use TimothyDC\LightspeedEcomProductFeed\Actions\SaveProductFeedAction;
 use TimothyDC\LightspeedEcomProductFeed\Exceptions\LightspeedEcomApiException;
+use TimothyDC\LightspeedEcomProductFeed\Feeds\StandardFeed;
 use TimothyDC\LightspeedEcomProductFeed\LightspeedEcomApi;
-use TimothyDC\LightspeedEcomProductFeed\Support\Feeds\StandardFeed;
 use TimothyDC\LightspeedEcomProductFeed\Traits\AskFeedQuestionsTrait;
 use WebshopappApiException;
 

@@ -12,11 +12,11 @@ use TimothyDC\LightspeedEcomProductFeed\Console\Commands\GenerateProductFeedComm
 use TimothyDC\LightspeedEcomProductFeed\Console\Commands\ListProductFeedCommand;
 use TimothyDC\LightspeedEcomProductFeed\Console\Commands\RemoveProductFeedCommand;
 use TimothyDC\LightspeedEcomProductFeed\Console\Commands\UpdateProductFeedCommand;
+use TimothyDC\LightspeedEcomProductFeed\Feeds\StandardFeed;
 use TimothyDC\LightspeedEcomProductFeed\Interfaces\ProductPayloadMappingInterface;
 use TimothyDC\LightspeedEcomProductFeed\Jobs\ProcessProductFeed;
 use TimothyDC\LightspeedEcomProductFeed\Models\ProductFeed;
 use TimothyDC\LightspeedEcomProductFeed\Services\ApiClient;
-use TimothyDC\LightspeedEcomProductFeed\Support\Feeds\StandardFeed;
 
 class LightspeedEcomProductFeedServiceProvider extends ServiceProvider
 {
