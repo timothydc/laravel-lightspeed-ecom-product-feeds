@@ -13,15 +13,15 @@ trait HasCategoryInfo
         }
     }
 
-    protected function getCategories(array $categories): array
+    protected function getCategories(array $lightspeedData): array
     {
-        return $categories;
+        return $lightspeedData['categories'];
     }
 
     protected function categoryFields(array $category): array
     {
         return [
-            'title' => $category['title'],
+            'title' => ['_cdata' => $category['title']],
             'url' => ($this->baseUrl . $category['url']),
             'depth' => $category['depth'],
         ];

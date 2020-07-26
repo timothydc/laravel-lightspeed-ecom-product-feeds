@@ -8,8 +8,21 @@ trait HasSpecificationInfo
 {
     protected function generateSpecificationInfo(array $lightspeedData): void
     {
-        foreach ($lightspeedData['specifications'] as $specification) {
-            $this->feed['specifications']['specification'][] = ['title' => ['_cdata' => $specification['name']], 'value' => $specification['value']];
+        foreach ($this->getSpecifications($lightspeedData) as $specification) {
+            $this->feed['specifications']['specification'][] = $this->specificationFields($specification);
         }
+    }
+
+    protected function getSpecifications(array $lightspeedData): array
+    {
+        return $lightspeedData['specifications'];
+    }
+
+    protected function specificationFields(array $specification): array
+    {
+        return [
+            'title' => ['_cdata' => $specification['name']],
+            'value' => ['_cdata' => $specification['value']],
+        ];
     }
 }
