@@ -45,8 +45,7 @@ return [
 ```
 
 ## Custom feed mapping
-Create your own class and let it implement `ProductPayloadMappingInterface`.
-Take a look at `TimothyDC\LightspeedEcomProductFeed\Actions\GenerateProductPayloadAction` for some XML data structure inspiration.
+Create your own class and let it implement `ProductPayloadMappingInterface`. Or take a look at `TimothyDC\LightspeedEcomProductFeed\Support\Feeds\StandardFeed` for some XML data structure inspiration.
 ```php
 use TimothyDC\LightspeedEcomProductFeed\Interfaces\ProductPayloadMappingInterface;
 
@@ -58,6 +57,9 @@ class CustomProductXml implements ProductPayloadMappingInterface
     }
 }
 ```
+
+This package also offers some template feeds for:
+- [Sooqr][link-sooqr] (`TimothyDC\LightspeedEcomProductFeed\Support\Feeds\SooqrFeed`)
 
 ## Available commands
 
@@ -115,3 +117,4 @@ MIT. Please see the [license file](license.md) for more information.
 [link-styleci]: https://styleci.io/repos/275463792
 [link-author]: https://github.com/timothydc
 [link-contributors]: ../../contributors
+[link-sooqr]: https://www.sooqr.com/
