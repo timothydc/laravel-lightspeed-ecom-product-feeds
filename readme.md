@@ -13,7 +13,6 @@ Via Composer
 $ composer require timothydc/laravel-lightspeed-ecom-product-feeds
 ```
 
-## Installation
 You can publish all resources, or you may choose to publish them separately:
 
 ```bash
