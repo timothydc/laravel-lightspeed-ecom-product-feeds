@@ -51,21 +51,21 @@ class TestCase extends Orchestra
             'create_date' => now()->toAtomString(),
             'update_date' => now()->addMinutes(30)->toAtomString(),
             'is_featured' => 0,
-            'data01' => '',
-            'data02' => '',
-            'data03' => '',
+            //            'data01' => '',
+            //            'data02' => '',
+            //            'data03' => '',
             'title' => ['_cdata' => 'Dummy product'],
             'fulltitle' => ['_cdata' => 'The most dummy product'],
-            'description' => ['_cdata' => ''],
-            'content' => ['_cdata' => ''],
-            'brand' => ['_cdata' => ''],
-            'supplier' => ['_cdata' => ''],
+            //            'description' => ['_cdata' => ''],
+            //            'content' => ['_cdata' => ''],
+            //            'brand' => ['_cdata' => ''],
+            //            'supplier' => ['_cdata' => ''],
             'thumb' => 'https://cdn.webshopapp.com/shops/12345/files/00987654/50x50x2/file.jpg',
             'src' => 'https://cdn.webshopapp.com/shops/12345/files/00987654/file.jpg',
             'url' => 'http://base.url/our-little-dummy-url.html?id=1234567',
             'article_code' => 'CODE XQE',
             'ean' => '978020137962',
-            'sku' => '',
+            //            'sku' => '',
             'tax' => 0.21,
             'price_incl' => 5,
             'old_price_incl' => 0,
@@ -108,8 +108,7 @@ class TestCase extends Orchestra
                         'url' => 'http://base.url/cat2',
                         'depth' => 1,
                         'sub_categories' => [
-                            'category' => [
-                            ],
+                            'category' => [],
                         ],
                     ],
                 ],
@@ -257,21 +256,13 @@ class TestCase extends Orchestra
     <update_date>' . now()->addMinutes(30)->toAtomString() . '</update_date>
     <create_date>' . now()->toAtomString() . '</create_date>
     <is_featured>0</is_featured>
-    <data01></data01>
-    <data02></data02>
-    <data03></data03>
     <title><![CDATA[Dummy product]]></title>
     <fulltitle><![CDATA[The most dummy product]]></fulltitle>
-    <description><![CDATA[]]></description>
-    <content><![CDATA[]]></content>
-    <brand><![CDATA[]]></brand>
-    <supplier><![CDATA[]]></supplier>
     <thumb>https://cdn.webshopapp.com/shops/12345/files/00987654/50x50x2/file.jpg</thumb>
     <src>https://cdn.webshopapp.com/shops/12345/files/00987654/file.jpg</src>
     <url>http://base.url/our-little-dummy-url.html?id=1234567</url>
     <article_code>CODE XQE</article_code>
     <ean>978020137962</ean>
-    <sku></sku>
     <tax>0.21</tax>
     <price_incl>5</price_incl>
     <old_price_incl>0</old_price_incl>

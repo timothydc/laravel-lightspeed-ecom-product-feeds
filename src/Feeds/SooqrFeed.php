@@ -28,7 +28,7 @@ class SooqrFeed extends Feed
     {
         $variant = $lightspeedData['variant'];
 
-        $this->feed = [
+        $this->feed = collect([
             'unique_id' => $variant['id'],
             'assoc_id' => $lightspeedData['id'],
             'update_date' => $this->convertDate($lightspeedData['updatedAt']),
@@ -45,7 +45,6 @@ class SooqrFeed extends Feed
             'supplier' => ['_cdata' => $lightspeedData['supplier']['title'] ?? ''],
             'thumb' => $lightspeedData['image']['thumb'] ?? '',
             'src' => $lightspeedData['image']['src'] ?? '',
-
             'url' => $this->baseUrl . $lightspeedData['url'] . '.html?id=' . $variant['id'],
             'article_code' => $variant['articleCode'],
             'ean' => $variant['ean'],
@@ -54,6 +53,11 @@ class SooqrFeed extends Feed
             'price_incl' => $variant['priceIncl'],
             'old_price_incl' => $variant['oldPriceIncl'],
             'stock_level' => $variant['stockLevel'],
-        ];
+        ])
+            ->filter(fn ($value) => (
+                (is_array($value) && array_key_exists('_cdata', $value) && $value['_cdata'] !== '')
+                || (is_array($value) === false && $value !== '')
+            ))
+            ->toArray();
     }
 }
