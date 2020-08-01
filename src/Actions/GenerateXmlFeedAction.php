@@ -48,10 +48,8 @@ class GenerateXmlFeedAction
         $params = ['limit' => 250, 'page' => 1];
 
         while ($products = $this->lightspeedEcomApi->api()->catalog->get(null, $params)) {
-
             if (property_exists(get_class($this->generateProductPayloadAction), 'useVariantAsBaseProduct')
                 && $this->generateProductPayloadAction->useVariantAsBaseProduct === true) {
-
                 foreach ($products as $product) {
                     foreach ($product['variants'] as $variant) {
                         $this->appendToFeed(
@@ -59,7 +57,6 @@ class GenerateXmlFeedAction
                         );
                     }
                 }
-
             } else {
                 foreach ($products as $product) {
                     // generate product payload

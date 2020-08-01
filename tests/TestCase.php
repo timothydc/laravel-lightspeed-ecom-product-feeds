@@ -73,8 +73,8 @@ class TestCase extends Orchestra
                     [
                         'thumb' => 'https://cdn.webshopapp.com/shops/12345/files/00987654/50x50x2/file.jpg',
                         'src' => 'https://cdn.webshopapp.com/shops/12345/files/00987654/file.jpg',
-                    ]
-                ]
+                    ],
+                ],
             ],
             'categories' => [
                 'category' => [
@@ -94,12 +94,12 @@ class TestCase extends Orchestra
                                                 'title' => ['_cdata' => 'Category 1-1-1',],
                                                 'url' => 'http://base.url/cat1/cat1-1/cat1-1-1',
                                                 'depth' => 3,
-                                            ]
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ]
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
                     ],
                     [
                         'title' => ['_cdata' => 'Category 2',],
@@ -213,7 +213,7 @@ class TestCase extends Orchestra
                 'articleCode' => 'CODE XQE',
                 'ean' => '978020137962',
                 'sku' => '',
-                'hs' => NULL,
+                'hs' => null,
                 'tax' => 0.21,
                 'priceExcl' => 4.1322,
                 'priceIncl' => 5,
