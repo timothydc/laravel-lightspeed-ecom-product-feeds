@@ -60,8 +60,8 @@ class TestCase extends Orchestra
             'content' => ['_cdata' => ''],
             'brand' => ['_cdata' => ''],
             'supplier' => ['_cdata' => ''],
-            'default_image_thumb' => 'https://cdn.webshopapp.com/shops/12345/files/00987654/50x50x2/file.jpg',
-            'default_image_src' => 'https://cdn.webshopapp.com/shops/12345/files/00987654/file.jpg',
+            'thumb' => 'https://cdn.webshopapp.com/shops/12345/files/00987654/50x50x2/file.jpg',
+            'src' => 'https://cdn.webshopapp.com/shops/12345/files/00987654/file.jpg',
             'url' => 'http://base.url/our-little-dummy-url.html?id=1234567',
             'article_code' => 'CODE XQE',
             'ean' => '978020137962',
@@ -266,8 +266,8 @@ class TestCase extends Orchestra
     <content><![CDATA[]]></content>
     <brand><![CDATA[]]></brand>
     <supplier><![CDATA[]]></supplier>
-    <default_image_thumb>https://cdn.webshopapp.com/shops/12345/files/00987654/50x50x2/file.jpg</default_image_thumb>
-    <default_image_src>https://cdn.webshopapp.com/shops/12345/files/00987654/file.jpg</default_image_src>
+    <thumb>https://cdn.webshopapp.com/shops/12345/files/00987654/50x50x2/file.jpg</thumb>
+    <src>https://cdn.webshopapp.com/shops/12345/files/00987654/file.jpg</src>
     <url>http://base.url/our-little-dummy-url.html?id=1234567</url>
     <article_code>CODE XQE</article_code>
     <ean>978020137962</ean>

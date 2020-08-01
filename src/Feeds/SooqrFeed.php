@@ -43,8 +43,8 @@ class SooqrFeed extends Feed
             'content' => ['_cdata' => $lightspeedData['content']],
             'brand' => ['_cdata' => $lightspeedData['brand']['title'] ?? ''],
             'supplier' => ['_cdata' => $lightspeedData['supplier']['title'] ?? ''],
-            'default_image_thumb' => $lightspeedData['image']['thumb'] ?? '',
-            'default_image_src' => $lightspeedData['image']['src'] ?? '',
+            'thumb' => $lightspeedData['image']['thumb'] ?? '',
+            'src' => $lightspeedData['image']['src'] ?? '',
 
             'url' => $this->baseUrl . $lightspeedData['url'] . '.html?id=' . $variant['id'],
             'article_code' => $variant['articleCode'],
