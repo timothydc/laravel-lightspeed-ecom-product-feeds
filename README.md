@@ -2,8 +2,8 @@
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
-[![Github Tests Action][ico-github-actions]][link-github-actions]
-[![StyleCI][ico-styleci]][link-styleci]
+[![Github Tests Action Tests][ico-github-actions-tests]][link-github-actions-tests]
+[![Github Tests Action Styling][ico-github-actions-styling]][link-github-actions-styling]
 
 ## Installation
 
@@ -95,6 +95,16 @@ Generate an XML by providing a product feed ID.
 $ php artisan ecom-feed:generate {product-feed-id}
 ```
 
+## Testing
+
+```bash
+composer test
+```
+
+## Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+
 ## Credits
 
 - [Timothy De Cort][link-author]
@@ -109,6 +119,8 @@ MIT. Please see the [license file](license.md) for more information.
 [ico-downloads]: https://img.shields.io/packagist/dt/timothydc/laravel-lightspeed-ecom-product-feeds.svg?style=flat-square
 [ico-github-actions]: https://img.shields.io/github/workflow/status/timothydc/laravel-lightspeed-ecom-product-feeds/run-tests?label=tests&style=flat-square
 [ico-styleci]: https://styleci.io/repos/275463792/shield
+[ico-github-actions-tests]: https://img.shields.io/github/workflow/status/timothydc/laravel-lightspeed-ecom-product-feeds/run-tests?label=tests&style=flat-square
+[ico-github-actions-styling]: https://img.shields.io/github/workflow/status/timothydc/laravel-lightspeed-ecom-product-feeds/fix-styling?label=styling&style=flat-square
 
 [link-packagist]: https://packagist.org/packages/timothydc/laravel-lightspeed-ecom-product-feeds
 [link-downloads]: https://packagist.org/packages/timothydc/laravel-lightspeed-ecom-product-feeds
@@ -117,3 +129,5 @@ MIT. Please see the [license file](license.md) for more information.
 [link-author]: https://github.com/timothydc
 [link-contributors]: ../../contributors
 [link-sooqr]: https://www.sooqr.com/
+[link-github-actions-tests]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/actions?query=workflow%3Arun-tests+branch%3Amaster
+[link-github-actions-styling]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/actions?query=workflow%3Afix-styling+branch%3Amaster
