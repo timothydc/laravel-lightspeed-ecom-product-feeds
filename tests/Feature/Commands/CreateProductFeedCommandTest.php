@@ -12,7 +12,7 @@ class CreateProductFeedCommandTest extends TestCase
 {
     public function test_it_can_create_a_new_product_feed(): void
     {
-        $this->markTestIncomplete('wip');
+        self::markTestIncomplete('wip');
 
         $this->mock(LightspeedEcomApi::class, static function ($mock) {
             $mock->shouldReceive('setCredentials')->once();
@@ -27,6 +27,6 @@ class CreateProductFeedCommandTest extends TestCase
             ->expectsChoice('What language should your feed be in?', 'nl', ['nl', 'en'])
             ->assertExitCode(0);
 
-        $this->assertEquals(1, ProductFeed::all()->count());
+        self::assertEquals(1, ProductFeed::all()->count());
     }
 }

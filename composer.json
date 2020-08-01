@@ -13,7 +13,7 @@
     "require": {
         "php": "^7.4",
         "seoshop/seoshop-php": "^1.9",
-        "spatie/array-to-xml": "^2.0"
+        "spatie/array-to-xml": "^2.10"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16",

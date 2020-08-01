@@ -9,6 +9,8 @@ use TimothyDC\LightspeedEcomProductFeed\Interfaces\ProductPayloadMappingInterfac
 
 abstract class Feed implements ProductPayloadMappingInterface
 {
+    public bool $useVariantAsBaseProduct = false;
+
     protected string $baseUrl;
     protected array $feed = [];
 
