@@ -20,6 +20,8 @@ class GenerateXmlFeedAction
     public string $childElementName = 'product';
     public string $storageOptions = 'public';
 
+    protected array $feed = [];
+
     public function __construct(LightspeedEcomApi $lightspeedEcomApi, ProductPayloadMappingInterface $generateProductPayloadAction)
     {
         $this->lightspeedEcomApi = $lightspeedEcomApi;
@@ -44,22 +46,40 @@ class GenerateXmlFeedAction
     protected function generatePayload(ProductFeed $productFeed): array
     {
         $params = ['limit' => 250, 'page' => 1];
-        $payload = [];
 
         while ($products = $this->lightspeedEcomApi->api()->catalog->get(null, $params)) {
-            foreach ($products as $product) {
-                // generate product payload
-                $productPayload = $this->generateProductPayloadAction->execute($productFeed->base_url, $product);
 
-                if ($productPayload) {
-                    $payload[$this->childElementName][] = $productPayload;
+            if (property_exists(get_class($this->generateProductPayloadAction), 'useVariantAsBaseProduct')
+                && $this->generateProductPayloadAction->useVariantAsBaseProduct === true) {
+
+                foreach ($products as $product) {
+                    foreach ($product['variants'] as $variant) {
+                        $this->appendToFeed(
+                            $this->generateProductPayloadAction->execute($productFeed->base_url, $product + ['variant' => $variant])
+                        );
+                    }
+                }
+
+            } else {
+                foreach ($products as $product) {
+                    // generate product payload
+                    $this->appendToFeed(
+                        $this->generateProductPayloadAction->execute($productFeed->base_url, $product)
+                    );
                 }
             }
 
             $params['page']++;
         }
 
-        return $payload;
+        return $this->feed;
+    }
+
+    protected function appendToFeed(array $payload): array
+    {
+        if ($payload) {
+            $this->feed[$this->childElementName][] = $payload;
+        }
     }
 
     protected function convertArrayToXml(array $payload): string
