@@ -14,6 +14,7 @@ class TestCase extends Orchestra
     protected array $productDataInput = [];
     protected array $productDataOutput = [];
     protected string $productBaseUrl = 'http://base.url/';
+    protected string $productXmlOutput = '';
 
     public function setUp(): void
     {
@@ -22,6 +23,7 @@ class TestCase extends Orchestra
         Carbon::setTestNow();
         $this->prepareProductInput();
         $this->prepareProductOutput();
+        $this->prepareXmlOutput();
 
         $this->withFactories(__DIR__ . '/database/factories');
     }
@@ -243,5 +245,74 @@ class TestCase extends Orchestra
             'specifications' => [],
             'discounts' => [],
         ];
+    }
+
+    protected function prepareXmlOutput(): void
+    {
+        $this->productXmlOutput = '<?xml version="1.0"?>
+<products>
+  <product>
+    <unique_id>1234567</unique_id>
+    <assoc_id>1234567890</assoc_id>
+    <update_date>' . now()->addMinutes(30)->toAtomString() . '</update_date>
+    <create_date>' . now()->toAtomString() . '</create_date>
+    <is_featured>0</is_featured>
+    <data01></data01>
+    <data02></data02>
+    <data03></data03>
+    <title><![CDATA[Dummy product]]></title>
+    <fulltitle><![CDATA[The most dummy product]]></fulltitle>
+    <description><![CDATA[]]></description>
+    <content><![CDATA[]]></content>
+    <brand><![CDATA[]]></brand>
+    <supplier><![CDATA[]]></supplier>
+    <default_image_thumb>https://cdn.webshopapp.com/shops/12345/files/00987654/50x50x2/file.jpg</default_image_thumb>
+    <default_image_src>https://cdn.webshopapp.com/shops/12345/files/00987654/file.jpg</default_image_src>
+    <url>http://base.url/our-little-dummy-url.html?id=1234567</url>
+    <article_code>CODE XQE</article_code>
+    <ean>978020137962</ean>
+    <sku></sku>
+    <tax>0.21</tax>
+    <price_incl>5</price_incl>
+    <old_price_incl>0</old_price_incl>
+    <stock_level>411</stock_level>
+    <images>
+      <image>
+        <thumb>https://cdn.webshopapp.com/shops/12345/files/00987654/50x50x2/file.jpg</thumb>
+        <src>https://cdn.webshopapp.com/shops/12345/files/00987654/file.jpg</src>
+      </image>
+    </images>
+    <categories>
+      <category>
+        <title><![CDATA[Category 1]]></title>
+        <url>http://base.url/cat1</url>
+        <depth>1</depth>
+        <sub_categories>
+          <category>
+            <title><![CDATA[Category 1-1]]></title>
+            <url>http://base.url/cat1/cat1-1</url>
+            <depth>2</depth>
+            <sub_categories>
+              <category>
+                <title><![CDATA[Category 1-1-1]]></title>
+                <url>http://base.url/cat1/cat1-1/cat1-1-1</url>
+                <depth>3</depth>
+              </category>
+            </sub_categories>
+          </category>
+        </sub_categories>
+      </category>
+      <category>
+        <title><![CDATA[Category 2]]></title>
+        <url>http://base.url/cat2</url>
+        <depth>1</depth>
+        <sub_categories>
+          <category/>
+        </sub_categories>
+      </category>
+    </categories>
+  </product>
+</products>
+';
     }
 }
