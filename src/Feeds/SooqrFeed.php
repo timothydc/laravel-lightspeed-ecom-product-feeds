@@ -58,6 +58,7 @@ class SooqrFeed extends Feed
                 (is_array($value) && array_key_exists('_cdata', $value) && $value['_cdata'] !== '')
                 || (is_array($value) === false && $value !== '')
             ))
+            ->filter(fn ($value, $key) => $key !== 'old_price_incl' || $variant === 0)
             ->toArray();
     }
 }

@@ -68,7 +68,7 @@ class TestCase extends Orchestra
             //            'sku' => '',
             'tax' => 0.21,
             'price_incl' => 5,
-            'old_price_incl' => 0,
+//            'old_price_incl' => 0,
             'stock_level' => 411,
             'images' => [
                 'image' => [
@@ -265,7 +265,6 @@ class TestCase extends Orchestra
     <ean>978020137962</ean>
     <tax>0.21</tax>
     <price_incl>5</price_incl>
-    <old_price_incl>0</old_price_incl>
     <stock_level>411</stock_level>
     <images>
       <image>
