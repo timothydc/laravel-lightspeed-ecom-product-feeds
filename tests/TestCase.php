@@ -252,8 +252,8 @@ class TestCase extends Orchestra
                         'stock_sold' => 10,
                         'stock_buy_minimum' => 1,
                         'stock_buy_maximum' => 10000,
-                    ]
-                ]
+                    ],
+                ],
             ],
             'images' => [
                 'image' => [
