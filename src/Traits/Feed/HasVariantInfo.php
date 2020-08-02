@@ -6,10 +6,13 @@ namespace TimothyDC\LightspeedEcomProductFeed\Traits\Feed;
 
 trait HasVariantInfo
 {
+    protected string $variantTreeMainNode = 'variants';
+    protected string $variantTreeChildNode = 'variant';
+
     protected function generateVariantInfo(array $lightspeedData): void
     {
         foreach ($this->getVariants($lightspeedData) as $variant) {
-            $this->feed['variants']['variant'][] = $this->variantFields($lightspeedData, $variant);
+            $this->feed[$this->variantTreeMainNode][$this->variantTreeChildNode][] = $this->variantFields($lightspeedData, $variant);
         }
     }
 
