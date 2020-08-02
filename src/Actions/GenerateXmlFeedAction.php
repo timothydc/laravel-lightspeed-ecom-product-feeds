@@ -41,6 +41,10 @@ class GenerateXmlFeedAction
 
         // save XML string to file
         Storage::disk(config('lightspeed-ecom-product-feed.feed_disk'))->put($productFeed->uuid . '.xml', $xmlString, $this->storageOptions);
+
+        // bump last updated timestamp
+        $productFeed->last_updated_at = now();
+        $productFeed->save();
     }
 
     protected function generatePayload(ProductFeed $productFeed): array

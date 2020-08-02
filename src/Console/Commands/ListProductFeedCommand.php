@@ -24,7 +24,7 @@ class ListProductFeedCommand extends Command
             'api_key',
             'api_secret',
             'mapping_class',
-            'updated_at',
+            'last_updated_at',
         ])->toArray();
 
         if (! $feeds) {

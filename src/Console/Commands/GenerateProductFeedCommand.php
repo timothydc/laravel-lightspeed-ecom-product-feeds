@@ -13,7 +13,7 @@ use TimothyDC\LightspeedEcomProductFeed\Models\ProductFeed;
 
 class GenerateProductFeedCommand extends Command
 {
-    protected $signature = 'ecom-feed:generate {productFeedId}';
+    protected $signature = 'ecom-feed:generate {id}';
 
     protected $description = 'Generate XML feed';
 
@@ -25,7 +25,10 @@ class GenerateProductFeedCommand extends Command
     public function handle(GenerateXmlFeedAction $generateXmlFeedAction): int
     {
         // get product feed
-        $feedId = $this->argument('productFeedId');
+        $feedId = $this->argument('id');
+
+        $this->comment('Loading product feed: ' . $feedId . ' ...');
+
         $feed = ProductFeed::find($feedId);
 
         if (! $feed) {
@@ -35,6 +38,8 @@ class GenerateProductFeedCommand extends Command
         }
 
         if ($feed->mapping_class) {
+            $this->comment('Loading mapping class: ' . $feed->mapping_class . ' ...');
+
             $mapper = resolve($feed->mapping_class);
 
             if (! $mapper instanceof ProductPayloadMappingInterface) {
@@ -47,7 +52,8 @@ class GenerateProductFeedCommand extends Command
         // generate feed
         $generateXmlFeedAction->execute($feed);
 
-        $this->info('Feed successfully created!');
+        $this->comment('Feed successfully created!');
+
         $this->info('Local URL: ' . Storage::disk(config('lightspeed-ecom-product-feed.feed_disk'))->path($feed->uuid . '.xml'));
         $this->info('Public URL: ' . Storage::disk(config('lightspeed-ecom-product-feed.feed_disk'))->url($feed->uuid . '.xml'));
 

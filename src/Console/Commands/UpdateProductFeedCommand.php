@@ -17,14 +17,14 @@ class UpdateProductFeedCommand extends Command
 {
     use AskFeedQuestionsTrait;
 
-    protected $signature = 'ecom-feed:update {productFeedId}';
+    protected $signature = 'ecom-feed:update {id}';
 
     protected $description = 'Update a product feed';
 
     public function handle(LightspeedEcomApi $lightspeedEcomApi, SaveProductFeedAction $saveProductFeedAction): int
     {
         // get product feed
-        $feedId = $this->argument('productFeedId');
+        $feedId = $this->argument('id');
         $feed = ProductFeed::find($feedId);
 
         if (! $feed) {
