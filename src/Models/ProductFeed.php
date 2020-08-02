@@ -18,10 +18,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $language
  * @property string $base_url
  * @property string $mapping_class
+ * @property string $last_updated_at
  *
  * @method static \Illuminate\Database\Eloquent\Model|\TimothyDC\LightspeedEcomProductFeed\Models\ProductFeed find(mixed $id)
  */
 class ProductFeed extends Model
 {
     protected $guarded = [];
+
+    protected $dates = ['last_updated_at'];
 }

@@ -20,6 +20,7 @@ class CreateProductFeedTable extends Migration
             $table->string('api_secret');
 
             $table->string('mapping_class')->nullable();
+            $table->timestamp('last_updated_at')->nullable();
 
             $table->timestamps();
         });
