@@ -113,20 +113,20 @@ class TestCase extends Orchestra
                             'node' => [
                                 ['_cdata' => 'Red'],
                                 ['_cdata' => 'Green'],
-                            ]
-                        ]
-                    ]
-                ]
+                            ],
+                        ],
+                    ],
+                ],
             ],
             'specifications' => [
                 'node' => [
                     [
                         'title' => ['_cdata' => 'Packages'],
-                        'value' => ['_cdata' => 5]
+                        'value' => ['_cdata' => 5],
                     ],
                     [
                         'title' => ['_cdata' => 'Airtight'],
-                        'value' => ['_cdata' => 'Yes']
+                        'value' => ['_cdata' => 'Yes'],
                     ],
                 ],
             ],
@@ -267,15 +267,15 @@ class TestCase extends Orchestra
                         [
                             'id' => 112,
                             'sortOrder' => 1,
-                            'title' => 'Red'
+                            'title' => 'Red',
                         ],
                         [
                             'id' => 113,
                             'sortOrder' => 2,
-                            'title' => 'Green'
+                            'title' => 'Green',
                         ],
-                    ]
-                ]
+                    ],
+                ],
             ],
             'reviews' => [],
             'specifications' => [

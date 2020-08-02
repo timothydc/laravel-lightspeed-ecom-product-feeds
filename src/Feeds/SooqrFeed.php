@@ -73,7 +73,7 @@ class SooqrFeed extends Feed
 
     protected function categoryFields(array $category): array
     {
-        $categoryFields =  [
+        $categoryFields = [
             'title' => ['_cdata' => $category['title']],
         ];
 
