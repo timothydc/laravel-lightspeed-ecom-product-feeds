@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.7.0] - 2020-08-02
+### Added
+- Dynamic XML nodes for categories, filters, images and specifications
+### Changed
+- Optimized required Sooqr fields
+
 ## [v1.6.0] - 2020-08-02
 ### Added
 - Option to show the configuration of a product feed via `ecom-feed:show {id}`
@@ -91,7 +97,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Commands to create, list and remove product feed via `artisan`-commands
 - Option to overwrite XML data structure via interface binding
 
-[Unreleased]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.6.0...HEAD
+[Unreleased]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.7.0...HEAD
+[v1.7.0]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.6.0...v1.7.0
 [v1.6.0]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.5.0...v1.6.0
 [v1.5.0]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.4.3...v1.5.0
 [v1.4.3]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.4.2...v1.4.3
