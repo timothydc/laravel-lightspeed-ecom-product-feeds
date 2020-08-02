@@ -72,7 +72,7 @@ class GenerateXmlFeedAction
         return $this->feed;
     }
 
-    protected function appendToFeed(array $payload): array
+    protected function appendToFeed(array $payload): void
     {
         if ($payload) {
             $this->feed[$this->childElementName][] = $payload;
