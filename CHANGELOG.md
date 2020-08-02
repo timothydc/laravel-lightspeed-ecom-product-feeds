@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.6.0] - 2020-08-02
+### Added
+- Option to show the configuration of a product feed via `ecom-feed:show {id}`
+### Changed
+- Fixed issue with return type during feed generation
+
 ## [v1.5.0] - 2020-08-01
 ### Added
 - Option to generate feed based on variants instead of products
@@ -85,7 +91,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Commands to create, list and remove product feed via `artisan`-commands
 - Option to overwrite XML data structure via interface binding
 
-[Unreleased]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.5.0...HEAD
+[Unreleased]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.6.0...HEAD
+[v1.6.0]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.5.0...v1.6.0
 [v1.5.0]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.4.3...v1.5.0
 [v1.4.3]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.4.2...v1.4.3
 [v1.4.2]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.4.1...v1.4.2

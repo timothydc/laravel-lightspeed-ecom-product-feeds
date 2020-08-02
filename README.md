@@ -82,17 +82,22 @@ $ php artisan ecom-feed:list
 
 Update a product feed.
 ```bash
-$ php artisan ecom-feed:update {product-feed-id}
+$ php artisan ecom-feed:update {id}
+```
+
+Show a product feed configuration.
+```bash
+$ php artisan ecom-feed:show {id}
 ```
 
 Remove a product feed.
 ```bash
-$ php artisan ecom-feed:remove {product-feed-id}
+$ php artisan ecom-feed:remove {id}
 ```
 
 Generate an XML by providing a product feed ID.
 ```bash
-$ php artisan ecom-feed:generate {product-feed-id}
+$ php artisan ecom-feed:generate {id}
 ```
 
 ## Testing
