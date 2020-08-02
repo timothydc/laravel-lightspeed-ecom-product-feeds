@@ -6,10 +6,13 @@ namespace TimothyDC\LightspeedEcomProductFeed\Traits\Feed;
 
 trait HasImageInfo
 {
+    protected string $imageTreeMainNode = 'images';
+    protected string $imageTreeChildNode = 'image';
+
     protected function generateImageInfo(array $lightspeedData): void
     {
         foreach ($this->getImages($lightspeedData) as $image) {
-            $this->feed['images']['image'][] = $this->imageFields($image);
+            $this->feed[$this->imageTreeMainNode][$this->imageTreeChildNode][] = $this->imageFields($image);
         }
     }
 
