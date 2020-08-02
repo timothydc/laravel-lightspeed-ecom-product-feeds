@@ -14,5 +14,6 @@ $factory->define(ProductFeed::class, static function (Generator $faker) {
         'api_key' => 'my_hidden_api_key',
         'api_secret' => 'my_hidden_api_secret',
         'mapping_class' => null,
+        'last_updated_at' => $faker->time(),
     ];
 });

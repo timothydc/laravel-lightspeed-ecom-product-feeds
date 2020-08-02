@@ -11,6 +11,7 @@ use TimothyDC\LightspeedEcomProductFeed\Console\Commands\CreateProductFeedComman
 use TimothyDC\LightspeedEcomProductFeed\Console\Commands\GenerateProductFeedCommand;
 use TimothyDC\LightspeedEcomProductFeed\Console\Commands\ListProductFeedCommand;
 use TimothyDC\LightspeedEcomProductFeed\Console\Commands\RemoveProductFeedCommand;
+use TimothyDC\LightspeedEcomProductFeed\Console\Commands\ShowProductFeedCommand;
 use TimothyDC\LightspeedEcomProductFeed\Console\Commands\UpdateProductFeedCommand;
 use TimothyDC\LightspeedEcomProductFeed\Feeds\StandardFeed;
 use TimothyDC\LightspeedEcomProductFeed\Interfaces\ProductPayloadMappingInterface;
@@ -29,6 +30,7 @@ class LightspeedEcomProductFeedServiceProvider extends ServiceProvider
         $this->app->bind('command.ecom-feed:list', ListProductFeedCommand::class);
         $this->app->bind('command.ecom-feed:create', CreateProductFeedCommand::class);
         $this->app->bind('command.ecom-feed:update', UpdateProductFeedCommand::class);
+        $this->app->bind('command.ecom-feed:show', ShowProductFeedCommand::class);
         $this->app->bind('command.ecom-feed:remove', RemoveProductFeedCommand::class);
         $this->app->bind('command.ecom-feed:generate', GenerateProductFeedCommand::class);
 
@@ -36,6 +38,7 @@ class LightspeedEcomProductFeedServiceProvider extends ServiceProvider
             'command.ecom-feed:list',
             'command.ecom-feed:create',
             'command.ecom-feed:update',
+            'command.ecom-feed:show',
             'command.ecom-feed:remove',
             'command.ecom-feed:generate',
         ]);
