@@ -24,11 +24,17 @@ trait HasCategoryTreeStructure
 
             // loop through parents and add its children
             foreach ($parents as $index => $parent) {
-                $parent[$this->categoryTreeSubNode][$this->categoryTreeChildNode] = $children
+                $subCategories = $children
                     ->filter(fn ($category) => Str::contains($category['url'], $parent['url']))
                     ->map(fn ($category) => $this->categoryFields($category))
                     ->values()
                     ->toArray();
+
+                if (! $subCategories) {
+                    continue;
+                }
+
+                $parent[$this->categoryTreeSubNode][$this->categoryTreeChildNode] = $subCategories;
 
                 // update parent data
                 $categories->put($index, $parent);

@@ -99,9 +99,6 @@ class TestCase extends Orchestra
                     ],
                     [
                         'title' => ['_cdata' => 'Category 2',],
-                        'sub_categories' => [
-                            'node' => [],
-                        ],
                     ],
                 ],
             ],
@@ -341,9 +338,6 @@ class TestCase extends Orchestra
       </node>
       <node>
         <title><![CDATA[Category 2]]></title>
-        <sub_categories>
-          <node/>
-        </sub_categories>
       </node>
     </categories>
     <filters>
