@@ -10,14 +10,14 @@ use TimothyDC\LightspeedEcomProductFeed\Models\ProductFeed;
 
 class RemoveProductFeedCommand extends Command
 {
-    protected $signature = 'ecom-feed:remove {productFeedId}';
+    protected $signature = 'ecom-feed:remove {id}';
 
     protected $description = 'Remove a product feed';
 
     public function handle(): int
     {
         // get product feed
-        $feedId = $this->argument('productFeedId');
+        $feedId = $this->argument('id');
         $feed = ProductFeed::find($feedId);
 
         if (! $feed) {
