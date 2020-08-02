@@ -6,16 +6,22 @@ namespace TimothyDC\LightspeedEcomProductFeed\Traits\Feed;
 
 trait HasFilterInfo
 {
+    protected string $filterTreeMainNode = 'filters';
+    protected string $filterTreeChildNode = 'filter';
+
+    protected string $filterValueTreeMainNode = 'values';
+    protected string $filterValueTreeChildNode = 'value';
+
     protected function generateFilterInfo(array $lightspeedData): void
     {
         foreach ($lightspeedData['filters'] as $filter) {
-            $productFilter = ['title' => $filter['title']];
+            $productFilter = ['title' => ['_cdata' => $filter['title']]];
 
             foreach ($filter['values'] as $filterValue) {
-                $productFilter['values']['value'][] = ['_cdata' => $filterValue['title']];
+                $productFilter[$this->filterValueTreeMainNode][$this->filterValueTreeChildNode][] = ['_cdata' => $filterValue['title']];
             }
 
-            $this->feed['filters']['filter'][] = $productFilter;
+            $this->feed[$this->filterTreeMainNode][$this->filterTreeChildNode][] = $productFilter;
         }
     }
 }

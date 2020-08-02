@@ -6,10 +6,13 @@ namespace TimothyDC\LightspeedEcomProductFeed\Traits\Feed;
 
 trait HasSpecificationInfo
 {
+    protected string $specificationTreeMainNode = 'specifications';
+    protected string $specificationTreeChildNode = 'specification';
+
     protected function generateSpecificationInfo(array $lightspeedData): void
     {
         foreach ($this->getSpecifications($lightspeedData) as $specification) {
-            $this->feed['specifications']['specification'][] = $this->specificationFields($specification);
+            $this->feed[$this->specificationTreeMainNode][$this->specificationTreeChildNode][] = $this->specificationFields($specification);
         }
     }
 

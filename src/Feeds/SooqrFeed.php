@@ -19,6 +19,15 @@ class SooqrFeed extends Feed
 
     public bool $useVariantAsBaseProduct = true;
 
+    public function __construct()
+    {
+        $this->categoryTreeChildNode = 'node';
+        $this->filterTreeChildNode = 'node';
+        $this->filterValueTreeChildNode = 'node';
+        $this->specificationTreeChildNode = 'node';
+        $this->imageTreeChildNode = 'node';
+    }
+
     protected function convertDate(string $date): string
     {
         return Carbon::createFromTimeString($date)->toRfc3339String();
@@ -60,5 +69,29 @@ class SooqrFeed extends Feed
             ))
             ->filter(fn ($value, $key) => $key !== 'old_price_incl' || $variant === 0)
             ->toArray();
+    }
+
+    protected function categoryFields(array $category): array
+    {
+        $categoryFields = [
+            'title' => ['_cdata' => $category['title']],
+        ];
+
+        if (array_key_exists($this->categoryTreeSubNode, $category)) {
+            $categoryFields[$this->categoryTreeSubNode] = $category[$this->categoryTreeSubNode];
+        }
+
+        return $categoryFields;
+    }
+
+    protected function generateSpecificationInfo(array $lightspeedData): void
+    {
+        foreach ($this->getSpecifications($lightspeedData) as $specification) {
+            if ($specification['value'] === '') {
+                continue;
+            }
+
+            $this->feed[$this->specificationTreeMainNode][$this->specificationTreeChildNode][] = $this->specificationFields($specification);
+        }
     }
 }

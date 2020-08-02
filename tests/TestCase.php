@@ -68,10 +68,10 @@ class TestCase extends Orchestra
             //            'sku' => '',
             'tax' => 0.21,
             'price_incl' => 5,
-//            'old_price_incl' => 0,
+            //            'old_price_incl' => 0,
             'stock_level' => 411,
             'images' => [
-                'image' => [
+                'node' => [
                     [
                         'thumb' => 'https://cdn.webshopapp.com/shops/12345/files/00987654/50x50x2/file.jpg',
                         'src' => 'https://cdn.webshopapp.com/shops/12345/files/00987654/file.jpg',
@@ -79,23 +79,17 @@ class TestCase extends Orchestra
                 ],
             ],
             'categories' => [
-                'category' => [
+                'node' => [
                     [
                         'title' => ['_cdata' => 'Category 1'],
-                        'url' => 'http://base.url/cat1',
-                        'depth' => 1,
                         'sub_categories' => [
-                            'category' => [
+                            'node' => [
                                 [
                                     'title' => ['_cdata' => 'Category 1-1'],
-                                    'url' => 'http://base.url/cat1/cat1-1',
-                                    'depth' => 2,
                                     'sub_categories' => [
-                                        'category' => [
+                                        'node' => [
                                             [
                                                 'title' => ['_cdata' => 'Category 1-1-1',],
-                                                'url' => 'http://base.url/cat1/cat1-1/cat1-1-1',
-                                                'depth' => 3,
                                             ],
                                         ],
                                     ],
@@ -105,11 +99,34 @@ class TestCase extends Orchestra
                     ],
                     [
                         'title' => ['_cdata' => 'Category 2',],
-                        'url' => 'http://base.url/cat2',
-                        'depth' => 1,
                         'sub_categories' => [
-                            'category' => [],
+                            'node' => [],
                         ],
+                    ],
+                ],
+            ],
+            'filters' => [
+                'node' => [
+                    [
+                        'title' => ['_cdata' => 'Color'],
+                        'values' => [
+                            'node' => [
+                                ['_cdata' => 'Red'],
+                                ['_cdata' => 'Green'],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            'specifications' => [
+                'node' => [
+                    [
+                        'title' => ['_cdata' => 'Packages'],
+                        'value' => ['_cdata' => 5],
+                    ],
+                    [
+                        'title' => ['_cdata' => 'Airtight'],
+                        'value' => ['_cdata' => 'Yes'],
                     ],
                 ],
             ],
@@ -239,9 +256,45 @@ class TestCase extends Orchestra
                 'title' => 'Default',
             ],
             'relations' => [],
-            'filters' => [],
+            'filters' => [
+                [
+                    'id' => 12,
+                    'createdAt' => now()->toAtomString(),
+                    'updatedAt' => now()->toAtomString(),
+                    'sortOrder' => 3,
+                    'title' => 'Color',
+                    'values' => [
+                        [
+                            'id' => 112,
+                            'sortOrder' => 1,
+                            'title' => 'Red',
+                        ],
+                        [
+                            'id' => 113,
+                            'sortOrder' => 2,
+                            'title' => 'Green',
+                        ],
+                    ],
+                ],
+            ],
             'reviews' => [],
-            'specifications' => [],
+            'specifications' => [
+                [
+                    'id' => 4342,
+                    'name' => 'Packages',
+                    'value' => 5,
+                ],
+                [
+                    'id' => 4341,
+                    'name' => 'Airtight',
+                    'value' => 'Yes',
+                ],
+                [
+                    'id' => 4346,
+                    'name' => 'Bonkers',
+                    'value' => '',
+                ],
+            ],
             'discounts' => [],
         ];
     }
@@ -267,40 +320,53 @@ class TestCase extends Orchestra
     <price_incl>5</price_incl>
     <stock_level>411</stock_level>
     <images>
-      <image>
+      <node>
         <thumb>https://cdn.webshopapp.com/shops/12345/files/00987654/50x50x2/file.jpg</thumb>
         <src>https://cdn.webshopapp.com/shops/12345/files/00987654/file.jpg</src>
-      </image>
+      </node>
     </images>
     <categories>
-      <category>
+      <node>
         <title><![CDATA[Category 1]]></title>
-        <url>http://base.url/cat1</url>
-        <depth>1</depth>
         <sub_categories>
-          <category>
+          <node>
             <title><![CDATA[Category 1-1]]></title>
-            <url>http://base.url/cat1/cat1-1</url>
-            <depth>2</depth>
             <sub_categories>
-              <category>
+              <node>
                 <title><![CDATA[Category 1-1-1]]></title>
-                <url>http://base.url/cat1/cat1-1/cat1-1-1</url>
-                <depth>3</depth>
-              </category>
+              </node>
             </sub_categories>
-          </category>
+          </node>
         </sub_categories>
-      </category>
-      <category>
+      </node>
+      <node>
         <title><![CDATA[Category 2]]></title>
-        <url>http://base.url/cat2</url>
-        <depth>1</depth>
         <sub_categories>
-          <category/>
+          <node/>
         </sub_categories>
-      </category>
+      </node>
     </categories>
+    <filters>
+      <node>
+        <title><![CDATA[Color]]></title>
+        <values>
+          <node><![CDATA[Red]]></node>
+          <node><![CDATA[Green]]></node>
+        </values>
+      </node>
+    </filters>
+    <specifications>
+      <node>
+        <title><![CDATA[Packages]]></title>
+        <value>
+          <_cdata>5</_cdata>
+        </value>
+      </node>
+      <node>
+        <title><![CDATA[Airtight]]></title>
+        <value><![CDATA[Yes]]></value>
+      </node>
+    </specifications>
   </product>
 </products>
 ';

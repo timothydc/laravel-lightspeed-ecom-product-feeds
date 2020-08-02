@@ -6,10 +6,13 @@ namespace TimothyDC\LightspeedEcomProductFeed\Traits\Feed;
 
 trait HasCategoryInfo
 {
+    protected string $categoryTreeMainNode = 'categories';
+    protected string $categoryTreeChildNode = 'category';
+
     protected function generateCategoryInfo(array $lightspeedData): void
     {
         foreach ($this->getCategories($lightspeedData) as $category) {
-            $this->feed['categories']['category'][] = $this->categoryFields($category);
+            $this->feed[$this->categoryTreeMainNode][$this->categoryTreeChildNode][] = $this->categoryFields($category);
         }
     }
 
