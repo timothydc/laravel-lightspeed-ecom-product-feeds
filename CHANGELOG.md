@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.7.2] - 2020-08-03
+### Changed
+- Fixed issue while generating feeds via jobs
+
 ## [v1.7.1] - 2020-08-02
 ### Added
 - Dynamic XML nodes for variants were missing
@@ -103,7 +107,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Commands to create, list and remove product feed via `artisan`-commands
 - Option to overwrite XML data structure via interface binding
 
-[Unreleased]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.7.1...HEAD
+[Unreleased]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.7.2...HEAD
+[v1.7.2]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.7.1...v1.7.2
 [v1.7.1]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.7.0...v1.7.1
 [v1.7.0]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.6.0...v1.7.0
 [v1.6.0]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.5.0...v1.6.0
