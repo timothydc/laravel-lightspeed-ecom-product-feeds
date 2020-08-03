@@ -60,6 +60,7 @@ class UpdateProductFeedCommand extends Command
             'base_url' => $baseUrl,
             'api_key' => $apiKey,
             'api_secret' => $apiSecret,
+            'last_updated_at' => null,
             'mapping_class' => $mappingClass === StandardFeed::class ? null : $mappingClass, // set null when using the default
         ], $feed);
 
