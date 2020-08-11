@@ -14,7 +14,6 @@ trait HasSpecificationAsNodes
     protected function generateSpecificationInfo(array $lightspeedData): void
     {
         foreach ($this->getSpecifications($lightspeedData) as $specification) {
-
             if ($this->specificationSkip($lightspeedData, $specification)) {
                 continue;
             }

@@ -12,7 +12,6 @@ trait HasImageInfo
     protected function generateImageInfo(array $lightspeedData): void
     {
         foreach ($this->getImages($lightspeedData) as $image) {
-
             if ($this->imageSkip($lightspeedData, $image)) {
                 continue;
             }

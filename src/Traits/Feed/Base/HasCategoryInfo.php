@@ -15,7 +15,6 @@ trait HasCategoryInfo
     protected function generateCategoryInfo(array $lightspeedData): void
     {
         foreach ($this->getCategories($lightspeedData) as $category) {
-
             if ($this->categorySkip($lightspeedData, $category)) {
                 continue;
             }

@@ -12,7 +12,6 @@ trait HasVariantInfo
     protected function generateVariantInfo(array $lightspeedData): void
     {
         foreach ($this->getVariants($lightspeedData) as $variant) {
-
             if ($this->variantSkip($lightspeedData, $variant)) {
                 continue;
             }
