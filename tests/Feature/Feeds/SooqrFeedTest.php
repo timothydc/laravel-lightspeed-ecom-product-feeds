@@ -251,18 +251,11 @@ class SooqrFeedTest extends TestCase
                     ],
                 ],
             ],
-            'filters' => [
+            'color' => [
                 'node' => [
-                    [
-                        'title' => ['_cdata' => 'Color'],
-                        'values' => [
-                            'node' => [
-                                ['_cdata' => 'Red'],
-                                ['_cdata' => 'Green'],
-                            ],
-                        ],
-                    ],
-                ],
+                    ['_cdata' => 'Red'],
+                    ['_cdata' => 'Green'],
+                ]
             ],
             'packages' => [['_cdata' => 5]],
             'airtight' => [['_cdata' => 'Yes']],
@@ -302,15 +295,10 @@ class SooqrFeedTest extends TestCase
     <sub_sub_categories>
       <node><![CDATA[Category 1-1-1]]></node>
     </sub_sub_categories>
-    <filters>
-      <node>
-        <title><![CDATA[Color]]></title>
-        <values>
-          <node><![CDATA[Red]]></node>
-          <node><![CDATA[Green]]></node>
-        </values>
-      </node>
-    </filters>
+    <color>
+      <node><![CDATA[Red]]></node>
+      <node><![CDATA[Green]]></node>
+    </color>
     <packages><![CDATA[5]]></packages>
     <airtight><![CDATA[Yes]]></airtight>
   </product>

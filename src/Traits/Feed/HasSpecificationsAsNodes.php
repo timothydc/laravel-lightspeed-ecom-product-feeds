@@ -18,7 +18,7 @@ trait HasSpecificationsAsNodes
                 continue;
             }
 
-            $this->feed[Str::xmlNode($specification['name'])] = $this->specificationFields($specification);
+            $this->feed[$this->specificationTreeMainNode . Str::xmlNode($specification['name'])] = $this->specificationFields($specification);
         }
     }
 

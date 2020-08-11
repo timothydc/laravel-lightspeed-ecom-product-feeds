@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace TimothyDC\LightspeedEcomProductFeed\Feeds;
 
 use Illuminate\Support\Carbon;
-use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\Base\HasFilterInfo;
+use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasFiltersAsNodes;
 use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\Base\HasImageInfo;
 use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasCategoryTreeStructureFlat;
 use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasSpecificationsAsNodes;
@@ -13,7 +13,7 @@ use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasSpecificationsAsNodes;
 class SooqrFeed extends Feed
 {
     use HasCategoryTreeStructureFlat,
-        HasFilterInfo,
+        HasFiltersAsNodes,
         HasImageInfo,
         HasSpecificationsAsNodes;
 
@@ -21,9 +21,10 @@ class SooqrFeed extends Feed
 
     public function __construct()
     {
-        $this->categoryTreeChildNode = 'node';
-        $this->filterTreeChildNode = 'node';
+        $this->specificationTreeMainNode = '';
+        $this->filterTreeChildNode = '';
         $this->filterValueTreeChildNode = 'node';
+        $this->categoryTreeChildNode = 'node';
         $this->imageTreeChildNode = 'node';
     }
 
