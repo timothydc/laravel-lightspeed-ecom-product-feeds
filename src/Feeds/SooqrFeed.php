@@ -35,40 +35,27 @@ class SooqrFeed extends Feed
 
     protected function generateProductInfo(array $lightspeedData): void
     {
-        $variant = $lightspeedData['variant'];
+        parent::generateProductInfo($lightspeedData);
 
-        $this->feed = collect([
-            'unique_id' => $variant['id'],
-            'assoc_id' => $lightspeedData['id'],
-            'update_date' => $this->convertDate($lightspeedData['updatedAt']),
-            'create_date' => $this->convertDate($lightspeedData['createdAt']),
-            'is_featured' => $lightspeedData['isFeatured'] ? 1 : 0,
-            'data01' => $lightspeedData['data01'],
-            'data02' => $lightspeedData['data02'],
-            'data03' => $lightspeedData['data03'],
-            'title' => ['_cdata' => $lightspeedData['title']],
-            'fulltitle' => ['_cdata' => $lightspeedData['fulltitle']],
-            'description' => ['_cdata' => $lightspeedData['description']],
-            'content' => ['_cdata' => $lightspeedData['content']],
-            'brand' => ['_cdata' => $lightspeedData['brand']['title'] ?? ''],
-            'supplier' => ['_cdata' => $lightspeedData['supplier']['title'] ?? ''],
-            'thumb' => $lightspeedData['image']['thumb'] ?? '',
-            'src' => $lightspeedData['image']['src'] ?? '',
-            'url' => $this->baseUrl . $lightspeedData['url'] . '.html?id=' . $variant['id'],
-            'article_code' => $variant['articleCode'],
-            'ean' => $variant['ean'],
-            'sku' => $variant['sku'],
-            'tax' => $variant['tax'],
-            'price_incl' => $variant['priceIncl'],
-            'old_price_incl' => $variant['oldPriceIncl'],
-            'stock_level' => $variant['stockLevel'],
-        ])
+        $this->feed = collect($this->feed)
             ->filter(fn ($value) => (
                 (is_array($value) && array_key_exists('_cdata', $value) && $value['_cdata'] !== '')
                 || (is_array($value) === false && $value !== '')
             ))
-            ->filter(fn ($value, $key) => $key !== 'old_price_incl' || $variant === 0)
+            ->filter(fn ($value, $key) => $key !== 'old_price_incl'
+                || ($key === 'old_price_incl' && $value > 0))
             ->toArray();
+
+        $this->feed['unique_id'] = $this->feed['variant_id'];
+        $this->feed['assoc_id'] = $this->feed['product_id'];
+        $this->feed['src'] = $this->feed['default_image_src'];
+        $this->feed['thumb'] = $this->feed['default_image_thumb'];
+
+        unset($this->feed['hits'],
+            $this->feed['variant_id'],
+            $this->feed['product_id'],
+            $this->feed['default_image_src'],
+            $this->feed['default_image_thumb']);
     }
 
     protected function specificationSkip(array $lightspeedData, array $specification): bool

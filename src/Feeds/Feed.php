@@ -60,7 +60,16 @@ abstract class Feed implements ProductPayloadMappingInterface
 
     protected function generateProductInfo(array $lightspeedData): void
     {
-        $this->feed = [
+        if ($this->useVariantAsBaseProduct) {
+            $this->feed = $this->generateProductInfoFromVariant($lightspeedData);
+        } else {
+            $this->feed = $this->generateProductInfoFromProduct($lightspeedData);
+        }
+    }
+
+    protected function generateProductInfoFromProduct(array $lightspeedData): array
+    {
+        return [
             'product_id' => $lightspeedData['id'],
             'update_date' => $this->convertDate($lightspeedData['updatedAt']),
             'create_date' => $this->convertDate($lightspeedData['createdAt']),
@@ -78,6 +87,39 @@ abstract class Feed implements ProductPayloadMappingInterface
             'supplier' => ['_cdata' => $lightspeedData['supplier']['title'] ?? ''],
             'default_image_thumb' => $lightspeedData['image']['thumb'] ?? '',
             'default_image_src' => $lightspeedData['image']['src'] ?? '',
+        ];
+    }
+
+    protected function generateProductInfoFromVariant(array $lightspeedData): array
+    {
+        $variant = $lightspeedData['variant'];
+
+        return [
+            'variant_id' => $variant['id'],
+            'product_id' => $lightspeedData['id'],
+            'update_date' => $this->convertDate($lightspeedData['updatedAt']),
+            'create_date' => $this->convertDate($lightspeedData['createdAt']),
+            'is_featured' => $lightspeedData['isFeatured'] ? 1 : 0,
+            'hits' => $lightspeedData['hits'],
+            'data01' => $lightspeedData['data01'],
+            'data02' => $lightspeedData['data02'],
+            'data03' => $lightspeedData['data03'],
+            'title' => ['_cdata' => $lightspeedData['title']],
+            'fulltitle' => ['_cdata' => $lightspeedData['fulltitle']],
+            'description' => ['_cdata' => $lightspeedData['description']],
+            'content' => ['_cdata' => $lightspeedData['content']],
+            'brand' => ['_cdata' => $lightspeedData['brand']['title'] ?? ''],
+            'supplier' => ['_cdata' => $lightspeedData['supplier']['title'] ?? ''],
+            'default_image_thumb' => $lightspeedData['image']['thumb'] ?? '',
+            'default_image_src' => $lightspeedData['image']['src'] ?? '',
+            'url' => $this->baseUrl . $lightspeedData['url'] . '.html?id=' . $variant['id'],
+            'article_code' => $variant['articleCode'],
+            'ean' => $variant['ean'],
+            'sku' => $variant['sku'],
+            'tax' => $variant['tax'],
+            'price_incl' => $variant['priceIncl'],
+            'old_price_incl' => $variant['oldPriceIncl'],
+            'stock_level' => $variant['stockLevel'],
         ];
     }
 

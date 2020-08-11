@@ -267,21 +267,21 @@ class SooqrFeedTest extends TestCase
         $this->productXmlOutput = '<?xml version="1.0"?>
 <products>
   <product>
-    <unique_id>1234567</unique_id>
-    <assoc_id>1234567890</assoc_id>
     <update_date>' . now()->addMinutes(30)->toAtomString() . '</update_date>
     <create_date>' . now()->toAtomString() . '</create_date>
     <is_featured>0</is_featured>
     <title><![CDATA[Dummy product]]></title>
     <fulltitle><![CDATA[The most dummy product]]></fulltitle>
-    <thumb>https://cdn.webshopapp.com/shops/12345/files/00987654/50x50x2/file.jpg</thumb>
-    <src>https://cdn.webshopapp.com/shops/12345/files/00987654/file.jpg</src>
     <url>http://base.url/our-little-dummy-url.html?id=1234567</url>
     <article_code>CODE XQE</article_code>
     <ean>978020137962</ean>
     <tax>0.21</tax>
     <price_incl>5</price_incl>
     <stock_level>411</stock_level>
+    <unique_id>1234567</unique_id>
+    <assoc_id>1234567890</assoc_id>
+    <src>https://cdn.webshopapp.com/shops/12345/files/00987654/file.jpg</src>
+    <thumb>https://cdn.webshopapp.com/shops/12345/files/00987654/50x50x2/file.jpg</thumb>
     <images>
       <node>https://cdn.webshopapp.com/shops/12345/files/00987654/50x50x2/file.jpg</node>
     </images>
