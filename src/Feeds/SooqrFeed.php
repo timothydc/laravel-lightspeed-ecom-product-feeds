@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace TimothyDC\LightspeedEcomProductFeed\Feeds;
 
 use Illuminate\Support\Carbon;
-use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasFiltersAsNodes;
 use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\Base\HasImageInfo;
 use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasCategoryTreeStructureFlat;
+use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasFiltersAsNodes;
 use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasSpecificationsAsNodes;
 
 class SooqrFeed extends Feed

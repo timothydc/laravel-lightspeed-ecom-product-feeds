@@ -255,7 +255,7 @@ class SooqrFeedTest extends TestCase
                 'node' => [
                     ['_cdata' => 'Red'],
                     ['_cdata' => 'Green'],
-                ]
+                ],
             ],
             'packages' => [['_cdata' => 5]],
             'airtight' => [['_cdata' => 'Yes']],
