@@ -5,8 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-### Changed
+### Added
 - Option to generate a flat representation of the category tree structure via `HasCategoryTreeStructureFlat`-trait
+- Option to generate a flat representation of the specification data via `HasSpecificationsAsNodes`-trait
+- Option to generate a flat representation of the filter data via `HasFiltersAsNodes`-trait
+- Option to skip certain data while processing categories, filters, images, specifications or variants
+- Custom `Str::xmlNode` function to convert a string to an XML node safe name
 
 ## [v1.7.2] - 2020-08-03
 ### Changed

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace TimothyDC\LightspeedEcomProductFeed\Traits\Feed;
 
 use Illuminate\Support\Str;
+use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\Base\HasCategoryInfo;
 
 /**
  * This trait will generate something like:
@@ -29,7 +30,8 @@ trait HasCategoryTreeStructure
     protected function generateCategoryInfo(array $lightspeedData): void
     {
         // only get a select set of category fields
-        $categories = collect($lightspeedData['categories']);
+        $categories = collect($lightspeedData['categories'])
+            ->filter(fn ($category) => $this->categorySkip($lightspeedData, $category) === false);
 
         // loop through each depth and add convert flat categories to a tree structure
         foreach ($categories->pluck('depth')->unique()->sortDesc() as $depth) {

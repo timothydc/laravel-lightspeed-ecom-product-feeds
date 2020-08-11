@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace TimothyDC\LightspeedEcomProductFeed\Traits\Feed;
+namespace TimothyDC\LightspeedEcomProductFeed\Traits\Feed\Base;
 
 trait HasImageInfo
 {
@@ -12,6 +12,10 @@ trait HasImageInfo
     protected function generateImageInfo(array $lightspeedData): void
     {
         foreach ($this->getImages($lightspeedData) as $image) {
+            if ($this->imageSkip($lightspeedData, $image)) {
+                continue;
+            }
+
             $this->feed[$this->imageTreeMainNode][$this->imageTreeChildNode][] = $this->imageFields($image);
         }
     }
@@ -24,5 +28,10 @@ trait HasImageInfo
     protected function imageFields(array $image): array
     {
         return ['thumb' => $image['thumb'], 'src' => $image['src']];
+    }
+
+    protected function imageSkip(array $lightspeedData, array $image): bool
+    {
+        return false;
     }
 }

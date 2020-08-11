@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace TimothyDC\LightspeedEcomProductFeed\Traits\Feed;
+namespace TimothyDC\LightspeedEcomProductFeed\Traits\Feed\Base;
 
 trait HasSpecificationInfo
 {
@@ -12,6 +12,10 @@ trait HasSpecificationInfo
     protected function generateSpecificationInfo(array $lightspeedData): void
     {
         foreach ($this->getSpecifications($lightspeedData) as $specification) {
+            if ($this->specificationSkip($lightspeedData, $specification)) {
+                continue;
+            }
+
             $this->feed[$this->specificationTreeMainNode][$this->specificationTreeChildNode][] = $this->specificationFields($specification);
         }
     }
@@ -27,5 +31,10 @@ trait HasSpecificationInfo
             'title' => ['_cdata' => $specification['name']],
             'value' => ['_cdata' => $specification['value']],
         ];
+    }
+
+    protected function specificationSkip(array $lightspeedData, array $specification): bool
+    {
+        return false;
     }
 }

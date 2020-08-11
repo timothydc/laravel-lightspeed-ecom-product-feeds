@@ -5,26 +5,26 @@ declare(strict_types=1);
 namespace TimothyDC\LightspeedEcomProductFeed\Feeds;
 
 use Illuminate\Support\Carbon;
+use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\Base\HasImageInfo;
 use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasCategoryTreeStructureFlat;
-use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasFilterInfo;
-use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasImageInfo;
-use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasSpecificationInfo;
+use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasFiltersAsNodes;
+use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasSpecificationsAsNodes;
 
 class SooqrFeed extends Feed
 {
     use HasCategoryTreeStructureFlat,
-        HasFilterInfo,
+        HasFiltersAsNodes,
         HasImageInfo,
-        HasSpecificationInfo;
+        HasSpecificationsAsNodes;
 
     public bool $useVariantAsBaseProduct = true;
 
     public function __construct()
     {
-        $this->categoryTreeChildNode = 'node';
-        $this->filterTreeChildNode = 'node';
+        $this->specificationTreeMainNode = '';
+        $this->filterTreeChildNode = '';
         $this->filterValueTreeChildNode = 'node';
-        $this->specificationTreeChildNode = 'node';
+        $this->categoryTreeChildNode = 'node';
         $this->imageTreeChildNode = 'node';
     }
 
@@ -71,15 +71,9 @@ class SooqrFeed extends Feed
             ->toArray();
     }
 
-    protected function generateSpecificationInfo(array $lightspeedData): void
+    protected function specificationSkip(array $lightspeedData, array $specification): bool
     {
-        foreach ($this->getSpecifications($lightspeedData) as $specification) {
-            if ($specification['value'] === '') {
-                continue;
-            }
-
-            $this->feed[$this->specificationTreeMainNode][$this->specificationTreeChildNode][] = $this->specificationFields($specification);
-        }
+        return $specification['value'] === '';
     }
 
     protected function imageFields(array $image): array

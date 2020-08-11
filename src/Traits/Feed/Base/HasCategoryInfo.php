@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace TimothyDC\LightspeedEcomProductFeed\Traits\Feed;
+namespace TimothyDC\LightspeedEcomProductFeed\Traits\Feed\Base;
 
 /**
  * Generate
@@ -15,6 +15,10 @@ trait HasCategoryInfo
     protected function generateCategoryInfo(array $lightspeedData): void
     {
         foreach ($this->getCategories($lightspeedData) as $category) {
+            if ($this->categorySkip($lightspeedData, $category)) {
+                continue;
+            }
+
             $this->feed[$this->categoryTreeMainNode][$this->categoryTreeChildNode][] = $this->categoryFields($category);
         }
     }
@@ -31,5 +35,10 @@ trait HasCategoryInfo
             'url' => ($this->baseUrl . $category['url']),
             'depth' => $category['depth'],
         ];
+    }
+
+    protected function categorySkip(array $lightspeedData, array $category): bool
+    {
+        return false;
     }
 }
