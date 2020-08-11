@@ -6,6 +6,20 @@ namespace TimothyDC\LightspeedEcomProductFeed\Traits\Feed;
 
 use Illuminate\Support\Str;
 
+/**
+ * This trait will generate something like:
+ *
+ * <categories>
+ *   <node>
+ *     <title><![CDATA[Main category]]></title>
+ *     <sub_categories>
+ *       <node>
+ *         <title><![CDATA[Subcategory]]></title>
+ *       </node>
+ *     </sub_categories>
+ *   </node>
+ * </categories>
+ */
 trait HasCategoryTreeStructure
 {
     use HasCategoryInfo;

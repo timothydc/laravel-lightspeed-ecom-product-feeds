@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace TimothyDC\LightspeedEcomProductFeed\Feeds;
 
 use Illuminate\Support\Carbon;
-use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasCategoryTreeStructure;
+use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasCategoryTreeStructureFlat;
 use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasFilterInfo;
 use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasImageInfo;
 use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasSpecificationInfo;
 
 class SooqrFeed extends Feed
 {
-    use HasCategoryTreeStructure,
+    use HasCategoryTreeStructureFlat,
         HasFilterInfo,
         HasImageInfo,
         HasSpecificationInfo;
@@ -71,19 +71,6 @@ class SooqrFeed extends Feed
             ->toArray();
     }
 
-    protected function categoryFields(array $category): array
-    {
-        $categoryFields = [
-            'title' => ['_cdata' => $category['title']],
-        ];
-
-        if (array_key_exists($this->categoryTreeSubNode, $category)) {
-            $categoryFields[$this->categoryTreeSubNode] = $category[$this->categoryTreeSubNode];
-        }
-
-        return $categoryFields;
-    }
-
     protected function generateSpecificationInfo(array $lightspeedData): void
     {
         foreach ($this->getSpecifications($lightspeedData) as $specification) {
@@ -93,5 +80,10 @@ class SooqrFeed extends Feed
 
             $this->feed[$this->specificationTreeMainNode][$this->specificationTreeChildNode][] = $this->specificationFields($specification);
         }
+    }
+
+    protected function imageFields(array $image): array
+    {
+        return [$image['thumb']];
     }
 }

@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace TimothyDC\LightspeedEcomProductFeed\Traits\Feed;
 
+/**
+ * Generate
+ */
 trait HasCategoryInfo
 {
     protected string $categoryTreeMainNode = 'categories';

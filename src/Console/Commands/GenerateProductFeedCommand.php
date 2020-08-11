@@ -49,6 +49,8 @@ class GenerateProductFeedCommand extends Command
             $generateXmlFeedAction->generateProductPayloadAction = $mapper;
         }
 
+        $this->comment('Generating feed ...');
+
         // generate feed
         $generateXmlFeedAction->execute($feed);
 
