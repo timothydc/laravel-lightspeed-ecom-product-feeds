@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Option to generate a flat representation of the filter data via `HasFiltersAsNodes`-trait
 - Option to skip certain data while processing categories, filters, images, specifications or variants
 - Custom `Str::xmlNode` function to convert a string to an XML node safe name
+### Changed
+- Moved `$useVariantAsBaseProduct` from Sooqr feed to base feed class
 
 ## [v1.7.2] - 2020-08-03
 ### Changed
