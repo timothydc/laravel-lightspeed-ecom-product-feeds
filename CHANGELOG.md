@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Option to generate a flat representation of the category tree structure via `HasCategoryTreeStructureFlat`-trait
 
 ## [v1.7.2] - 2020-08-03
 ### Changed

@@ -226,33 +226,28 @@ class SooqrFeedTest extends TestCase
             'stock_level' => 411,
             'images' => [
                 'node' => [
+                    ['https://cdn.webshopapp.com/shops/12345/files/00987654/50x50x2/file.jpg',],
+                ],
+            ],
+            'main_categories' => [
+                'node' => [
                     [
-                        'thumb' => 'https://cdn.webshopapp.com/shops/12345/files/00987654/50x50x2/file.jpg',
-                        'src' => 'https://cdn.webshopapp.com/shops/12345/files/00987654/file.jpg',
+                        ['_cdata' => 'Category 1'],
+                        ['_cdata' => 'Category 2'],
                     ],
                 ],
             ],
-            'categories' => [
+            'sub_categories' => [
                 'node' => [
                     [
-                        'title' => ['_cdata' => 'Category 1'],
-                        'sub_categories' => [
-                            'node' => [
-                                [
-                                    'title' => ['_cdata' => 'Category 1-1'],
-                                    'sub_categories' => [
-                                        'node' => [
-                                            [
-                                                'title' => ['_cdata' => 'Category 1-1-1',],
-                                            ],
-                                        ],
-                                    ],
-                                ],
-                            ],
-                        ],
+                        ['_cdata' => 'Category 1-1'],
                     ],
+                ],
+            ],
+            'sub_sub_categories' => [
+                'node' => [
                     [
-                        'title' => ['_cdata' => 'Category 2',],
+                        ['_cdata' => 'Category 1-1-1'],
                     ],
                 ],
             ],
@@ -305,29 +300,18 @@ class SooqrFeedTest extends TestCase
     <price_incl>5</price_incl>
     <stock_level>411</stock_level>
     <images>
-      <node>
-        <thumb>https://cdn.webshopapp.com/shops/12345/files/00987654/50x50x2/file.jpg</thumb>
-        <src>https://cdn.webshopapp.com/shops/12345/files/00987654/file.jpg</src>
-      </node>
+      <node>https://cdn.webshopapp.com/shops/12345/files/00987654/50x50x2/file.jpg</node>
     </images>
-    <categories>
-      <node>
-        <title><![CDATA[Category 1]]></title>
-        <sub_categories>
-          <node>
-            <title><![CDATA[Category 1-1]]></title>
-            <sub_categories>
-              <node>
-                <title><![CDATA[Category 1-1-1]]></title>
-              </node>
-            </sub_categories>
-          </node>
-        </sub_categories>
-      </node>
-      <node>
-        <title><![CDATA[Category 2]]></title>
-      </node>
-    </categories>
+    <main_categories>
+      <node><![CDATA[Category 1]]></node>
+      <node><![CDATA[Category 2]]></node>
+    </main_categories>
+    <sub_categories>
+      <node><![CDATA[Category 1-1]]></node>
+    </sub_categories>
+    <sub_sub_categories>
+      <node><![CDATA[Category 1-1-1]]></node>
+    </sub_sub_categories>
     <filters>
       <node>
         <title><![CDATA[Color]]></title>
