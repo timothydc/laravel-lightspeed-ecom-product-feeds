@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace TimothyDC\LightspeedEcomProductFeed\Traits\Feed;
+namespace TimothyDC\LightspeedEcomProductFeed\Traits\Feed\Base;
 
 /**
  * Generate

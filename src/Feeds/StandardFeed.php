@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace TimothyDC\LightspeedEcomProductFeed\Feeds;
 
-use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasCategoryInfo;
-use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasFilterInfo;
-use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasImageInfo;
-use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasSpecificationInfo;
-use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasVariantInfo;
+use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\Base\HasCategoryInfo;
+use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\Base\HasFilterInfo;
+use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\Base\HasImageInfo;
+use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\Base\HasSpecificationInfo;
+use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\Base\HasVariantInfo;
 
 class StandardFeed extends Feed
 {

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace TimothyDC\LightspeedEcomProductFeed\Traits\Feed;
 
+use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\Base\HasCategoryInfo;
+
 /**
  * This trait will generate something like:
  *
