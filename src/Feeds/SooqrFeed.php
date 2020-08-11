@@ -8,14 +8,14 @@ use Illuminate\Support\Carbon;
 use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\Base\HasFilterInfo;
 use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\Base\HasImageInfo;
 use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasCategoryTreeStructureFlat;
-use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasSpecificationAsNodes;
+use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasSpecificationsAsNodes;
 
 class SooqrFeed extends Feed
 {
     use HasCategoryTreeStructureFlat,
         HasFilterInfo,
         HasImageInfo,
-        HasSpecificationAsNodes;
+        HasSpecificationsAsNodes;
 
     public bool $useVariantAsBaseProduct = true;
 

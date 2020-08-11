@@ -7,7 +7,7 @@ namespace TimothyDC\LightspeedEcomProductFeed\Traits\Feed;
 use Illuminate\Support\Str;
 use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\Base\HasSpecificationInfo;
 
-trait HasSpecificationAsNodes
+trait HasSpecificationsAsNodes
 {
     use HasSpecificationInfo;
 
@@ -18,8 +18,7 @@ trait HasSpecificationAsNodes
                 continue;
             }
 
-            $nodeName = Str::snake(preg_replace('/[^A-Za-z0-9\-]/', ' ', $specification['name']));
-            $this->feed[$nodeName] = $this->specificationFields($specification);
+            $this->feed[Str::xmlNode($specification['name'])] = $this->specificationFields($specification);
         }
     }
 
