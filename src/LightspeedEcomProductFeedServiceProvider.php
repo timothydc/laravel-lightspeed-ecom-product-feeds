@@ -7,6 +7,7 @@ namespace TimothyDC\LightspeedEcomProductFeed;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 use TimothyDC\LightspeedEcomProductFeed\Console\Commands\CreateProductFeedCommand;
 use TimothyDC\LightspeedEcomProductFeed\Console\Commands\GenerateProductFeedCommand;
 use TimothyDC\LightspeedEcomProductFeed\Console\Commands\ListProductFeedCommand;
@@ -16,6 +17,7 @@ use TimothyDC\LightspeedEcomProductFeed\Console\Commands\UpdateProductFeedComman
 use TimothyDC\LightspeedEcomProductFeed\Feeds\StandardFeed;
 use TimothyDC\LightspeedEcomProductFeed\Interfaces\ProductPayloadMappingInterface;
 use TimothyDC\LightspeedEcomProductFeed\Jobs\ProcessProductFeed;
+use TimothyDC\LightspeedEcomProductFeed\Mixins\StrMixin;
 use TimothyDC\LightspeedEcomProductFeed\Models\ProductFeed;
 use TimothyDC\LightspeedEcomProductFeed\Services\ApiClient;
 
@@ -61,6 +63,8 @@ class LightspeedEcomProductFeedServiceProvider extends ServiceProvider
                 ->loadMigrations()
                 ->loadScheduledTasks();
         }
+
+        Str::mixin(new StrMixin);
     }
 
     protected function loadConfig(): self
