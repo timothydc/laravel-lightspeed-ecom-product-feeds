@@ -234,7 +234,7 @@ class SooqrFeedTest extends TestCase
                     [
                         ['_cdata' => 'Category 1'],
                         ['_cdata' => 'Category 2'],
-                    ]
+                    ],
                 ],
             ],
             'sub_categories' => [
