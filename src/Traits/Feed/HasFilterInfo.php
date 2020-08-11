@@ -15,13 +15,31 @@ trait HasFilterInfo
     protected function generateFilterInfo(array $lightspeedData): void
     {
         foreach ($lightspeedData['filters'] as $filter) {
+            if ($this->filterSkip($lightspeedData, $filter)) {
+                continue;
+            }
+
             $productFilter = ['title' => ['_cdata' => $filter['title']]];
 
             foreach ($filter['values'] as $filterValue) {
+                if ($this->filterValueSkip($lightspeedData, $filter, $filterValue)) {
+                    continue;
+                }
+
                 $productFilter[$this->filterValueTreeMainNode][$this->filterValueTreeChildNode][] = ['_cdata' => $filterValue['title']];
             }
 
             $this->feed[$this->filterTreeMainNode][$this->filterTreeChildNode][] = $productFilter;
         }
+    }
+
+    protected function filterSkip(array $lightspeedData, array $filter): bool
+    {
+        return false;
+    }
+
+    protected function filterValueSkip(array $lightspeedData, array $filter, array $filterValue): bool
+    {
+        return false;
     }
 }

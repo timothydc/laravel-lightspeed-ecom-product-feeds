@@ -12,6 +12,11 @@ trait HasVariantInfo
     protected function generateVariantInfo(array $lightspeedData): void
     {
         foreach ($this->getVariants($lightspeedData) as $variant) {
+
+            if ($this->variantSkip($lightspeedData, $variant)) {
+                continue;
+            }
+
             $this->feed[$this->variantTreeMainNode][$this->variantTreeChildNode][] = $this->variantFields($lightspeedData, $variant);
         }
     }
@@ -44,5 +49,10 @@ trait HasVariantInfo
             'stock_buy_minimum' => $variant['stockBuyMinimum'],
             'stock_buy_maximum' => $variant['stockBuyMaximum'],
         ];
+    }
+
+    protected function variantSkip(array $lightspeedData, array $variant): bool
+    {
+        return false;
     }
 }
