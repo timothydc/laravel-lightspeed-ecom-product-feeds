@@ -7,13 +7,12 @@ namespace TimothyDC\LightspeedEcomProductFeed\Actions;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 use Spatie\ArrayToXml\ArrayToXml;
+use TimothyDC\LightspeedEcomApi\LightspeedEcomApi;
 use TimothyDC\LightspeedEcomProductFeed\Interfaces\ProductPayloadMappingInterface;
-use TimothyDC\LightspeedEcomProductFeed\LightspeedEcomApi;
 use TimothyDC\LightspeedEcomProductFeed\Models\ProductFeed;
 
 class GenerateXmlFeedAction
 {
-    private LightspeedEcomApi $lightspeedEcomApi;
     public ProductPayloadMappingInterface $generateProductPayloadAction;
 
     public string $rootElementName = 'products';
@@ -22,16 +21,15 @@ class GenerateXmlFeedAction
 
     protected array $feed = [];
 
-    public function __construct(LightspeedEcomApi $lightspeedEcomApi, ProductPayloadMappingInterface $generateProductPayloadAction)
+    public function __construct(ProductPayloadMappingInterface $generateProductPayloadAction)
     {
-        $this->lightspeedEcomApi = $lightspeedEcomApi;
         $this->generateProductPayloadAction = $generateProductPayloadAction;
     }
 
     public function execute(ProductFeed $productFeed): void
     {
         // set credentials
-        $this->lightspeedEcomApi->setCredentials($productFeed->api_key, $productFeed->api_secret);
+        LightspeedEcomApi::setCredentials($productFeed->api_key, $productFeed->api_secret);
 
         // generate payload
         $payload = $this->generatePayload($productFeed);
@@ -51,7 +49,7 @@ class GenerateXmlFeedAction
     {
         $params = ['limit' => 250, 'page' => 1];
 
-        while ($products = $this->lightspeedEcomApi->api()->catalog->get(null, $params)) {
+        while ($products = LightspeedEcomApi::catalog()->get(null, $params)) {
             if (property_exists(get_class($this->generateProductPayloadAction), 'useVariantAsBaseProduct')
                 && $this->generateProductPayloadAction->useVariantAsBaseProduct === true) {
                 foreach ($products as $product) {
