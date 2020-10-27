@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace TimothyDC\LightspeedEcomProductFeed\Console\Commands;
 
 use Illuminate\Console\Command;
+use TimothyDC\LightspeedEcomApi\LightspeedEcomApi;
 use TimothyDC\LightspeedEcomProductFeed\Actions\SaveProductFeedAction;
 use TimothyDC\LightspeedEcomProductFeed\Exceptions\LightspeedEcomApiException;
 use TimothyDC\LightspeedEcomProductFeed\Feeds\StandardFeed;
-use TimothyDC\LightspeedEcomProductFeed\LightspeedEcomApi;
 use TimothyDC\LightspeedEcomProductFeed\Models\ProductFeed;
 use TimothyDC\LightspeedEcomProductFeed\Traits\AskFeedQuestionsTrait;
 use WebshopappApiException;
@@ -21,7 +21,7 @@ class UpdateProductFeedCommand extends Command
 
     protected $description = 'Update a product feed';
 
-    public function handle(LightspeedEcomApi $lightspeedEcomApi, SaveProductFeedAction $saveProductFeedAction): int
+    public function handle(SaveProductFeedAction $saveProductFeedAction): int
     {
         // get product feed
         $feedId = $this->argument('id');
@@ -33,15 +33,13 @@ class UpdateProductFeedCommand extends Command
             return 1;
         }
 
-        $this->lightspeedEcomApi = $lightspeedEcomApi;
-
         $mappingClass = $this->askMappingClass($feed);
         $cronExpression = $this->askCronExpression($feed);
         $apiKey = $this->askApiKey($feed);
         $apiSecret = $this->askApiSecret($feed);
 
         // set credentials
-        $this->lightspeedEcomApi->setCredentials($apiKey, $apiSecret);
+        LightspeedEcomApi::setCredentials($apiKey, $apiSecret);
 
         try {
             $language = $this->askLanguage($feed);

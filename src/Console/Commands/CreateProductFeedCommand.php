@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace TimothyDC\LightspeedEcomProductFeed\Console\Commands;
 
 use Illuminate\Console\Command;
+use TimothyDC\LightspeedEcomApi\LightspeedEcomApi;
 use TimothyDC\LightspeedEcomProductFeed\Actions\SaveProductFeedAction;
 use TimothyDC\LightspeedEcomProductFeed\Exceptions\LightspeedEcomApiException;
 use TimothyDC\LightspeedEcomProductFeed\Feeds\StandardFeed;
-use TimothyDC\LightspeedEcomProductFeed\LightspeedEcomApi;
 use TimothyDC\LightspeedEcomProductFeed\Traits\AskFeedQuestionsTrait;
 use WebshopappApiException;
 
@@ -20,17 +20,15 @@ class CreateProductFeedCommand extends Command
 
     protected $description = 'Create a new product feed definition';
 
-    public function handle(LightspeedEcomApi $lightspeedEcomApi, SaveProductFeedAction $saveProductFeedAction): int
+    public function handle(SaveProductFeedAction $saveProductFeedAction): int
     {
-        $this->lightspeedEcomApi = $lightspeedEcomApi;
-
         $mappingClass = $this->askMappingClass();
         $cronExpression = $this->askCronExpression();
         $apiKey = $this->askApiKey();
         $apiSecret = $this->askApiSecret();
 
         // set freshly entered credentials
-        $this->lightspeedEcomApi->setCredentials($apiKey, $apiSecret);
+        LightspeedEcomApi::setCredentials($apiKey, $apiSecret);
 
         try {
             $language = $this->askLanguage();
