@@ -12,7 +12,7 @@
     "keywords": ["timothydc", "lightspeed", "eCommerce", "laravel", "feed", "sooqr"],
     "require": {
         "php": "^7.4",
-        "laravel/legacy-factories": "^1.0",
+        "laravel/legacy-factories": "^1.0.5",
         "spatie/array-to-xml": "^2.10",
         "timothydc/laravel-lightspeed-ecom-api": "^1.1",
         "illuminate/support": "^7.0|^8.0"
