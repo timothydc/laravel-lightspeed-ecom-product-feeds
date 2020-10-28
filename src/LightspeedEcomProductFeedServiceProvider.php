@@ -19,7 +19,6 @@ use TimothyDC\LightspeedEcomProductFeed\Interfaces\ProductPayloadMappingInterfac
 use TimothyDC\LightspeedEcomProductFeed\Jobs\ProcessProductFeed;
 use TimothyDC\LightspeedEcomProductFeed\Mixins\StrMixin;
 use TimothyDC\LightspeedEcomProductFeed\Models\ProductFeed;
-use TimothyDC\LightspeedEcomProductFeed\Services\ApiClient;
 
 class LightspeedEcomProductFeedServiceProvider extends ServiceProvider
 {
@@ -44,13 +43,6 @@ class LightspeedEcomProductFeedServiceProvider extends ServiceProvider
             'command.ecom-feed:remove',
             'command.ecom-feed:generate',
         ]);
-
-        // register services
-        $this->app->singleton(LightspeedEcomApi::class, static function ($app) {
-            return new LightspeedEcomApi($app->make(ApiClient::class));
-        });
-
-        $this->app->alias(LightspeedEcomApi::class, 'lightspeed-ecom-api');
 
         // register product mapping class
         $this->app->bind(ProductPayloadMappingInterface::class, StandardFeed::class);

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace TimothyDC\LightspeedEcomProductFeed\Tests\Feature\Commands;
 
-use TimothyDC\LightspeedEcomProductFeed\LightspeedEcomApi;
+use TimothyDC\LightspeedEcomApi\LightspeedEcomApi;
 use TimothyDC\LightspeedEcomProductFeed\Models\ProductFeed;
 use TimothyDC\LightspeedEcomProductFeed\Tests\TestCase;
 
