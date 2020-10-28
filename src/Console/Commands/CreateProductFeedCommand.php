@@ -39,12 +39,13 @@ class CreateProductFeedCommand extends Command
                 // make sure our language exists on the webshop
                 if (in_array($language, $this->getWebshopLanguageCodes(), true) === false) {
                     $language = null;
+
                     continue;
                 }
-
             } catch (WebshopappApiException $e) {
                 $this->error('Lightspeed eCom Error: language not found. Try again.');
                 $language = null;
+
                 continue;
             }
         }
