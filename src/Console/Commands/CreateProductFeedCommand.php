@@ -29,9 +29,27 @@ class CreateProductFeedCommand extends Command
         // set freshly entered credentials
         LightspeedEcomApi::setCredentials($apiKey, $apiSecret);
 
-        try {
+        $language = null;
+        while (! $language) {
             $language = $this->askLanguage();
 
+            LightspeedEcomApi::setLanguage($language);
+
+            try {
+                // make sure our language exists on the webshop
+                if (in_array($language, $this->getWebshopLanguageCodes(), true) === false) {
+                    $language = null;
+                    continue;
+                }
+
+            } catch (WebshopappApiException $e) {
+                $this->error('Lightspeed eCom Error: language not found. Try again.');
+                $language = null;
+                continue;
+            }
+        }
+
+        try {
             // generate base URL and add language if the shop has multiple languages
             $baseUrl = $this->getWebshopUrl($this->getWebshopLanguageCodes(), $language);
         } catch (WebshopappApiException $e) {

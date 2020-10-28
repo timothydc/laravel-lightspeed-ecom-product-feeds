@@ -56,14 +56,10 @@ trait AskFeedQuestionsTrait
 
     protected function askLanguage(ProductFeed $feed = null): string
     {
-        // get languages from Lightspeed
-        $languages = $this->getWebshopLanguageCodes();
-
-        // get user prefered language
         return $this->choice(
             'What language should your feed be in?',
-            $languages,
-            $feed ? $feed->language : reset($languages)
+            ['nl', 'en', 'de', 'fr'],
+            $feed ? $feed->language : null
         );
     }
 }
