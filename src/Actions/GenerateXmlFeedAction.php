@@ -28,6 +28,9 @@ class GenerateXmlFeedAction
 
     public function execute(ProductFeed $productFeed): void
     {
+        // set language
+        LightspeedEcomApi::setLanguage($productFeed->language);
+
         // set credentials
         LightspeedEcomApi::setCredentials($productFeed->api_key, $productFeed->api_secret);
 

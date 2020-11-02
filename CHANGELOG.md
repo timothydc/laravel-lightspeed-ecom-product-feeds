@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.9.1] - 2020-11-02
+### Fixed
+- Set missing API language
+
 ## [v1.9.0] - 2020-10-28
 ### Changed
 - Language input is generated from a fixed list and not taken from your webshop
@@ -122,7 +126,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Commands to create, list and remove product feed via `artisan`-commands
 - Option to overwrite XML data structure via interface binding
 
-[Unreleased]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.9.0...HEAD
+[Unreleased]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.9.1...HEAD
+[v1.9.1]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.9.0...v1.9.1
 [v1.9.0]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.8.0...v1.9.0
 [v1.8.0]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.7.2...v1.8.0
 [v1.7.2]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.7.1...v1.7.2
