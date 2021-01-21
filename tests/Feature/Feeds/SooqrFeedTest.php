@@ -214,7 +214,7 @@ class SooqrFeedTest extends TestCase
             //            'content' => ['_cdata' => ''],
             //            'brand' => ['_cdata' => ''],
             //            'supplier' => ['_cdata' => ''],
-            'thumb' => 'https://cdn.webshopapp.com/shops/12345/files/00987654/50x50x2/file.jpg',
+            'thumb' => 'https://cdn.webshopapp.com/shops/12345/files/00987654/150x150x2/file.jpg',
             'src' => 'https://cdn.webshopapp.com/shops/12345/files/00987654/file.jpg',
             'url' => 'http://base.url/our-little-dummy-url.html?id=1234567',
             'article_code' => 'CODE XQE',
@@ -281,7 +281,7 @@ class SooqrFeedTest extends TestCase
     <unique_id>1234567</unique_id>
     <assoc_id>1234567890</assoc_id>
     <src>https://cdn.webshopapp.com/shops/12345/files/00987654/file.jpg</src>
-    <thumb>https://cdn.webshopapp.com/shops/12345/files/00987654/50x50x2/file.jpg</thumb>
+    <thumb>https://cdn.webshopapp.com/shops/12345/files/00987654/150x150x2/file.jpg</thumb>
     <images>
       <node>https://cdn.webshopapp.com/shops/12345/files/00987654/50x50x2/file.jpg</node>
     </images>
