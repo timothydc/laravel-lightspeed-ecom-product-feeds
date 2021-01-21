@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace TimothyDC\LightspeedEcomProductFeed\Feeds;
 
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\Base\HasImageInfo;
 use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasCategoryTreeStructureFlat;
 use TimothyDC\LightspeedEcomProductFeed\Traits\Feed\HasFiltersAsNodes;
@@ -49,7 +50,7 @@ class SooqrFeed extends Feed
         $this->feed['unique_id'] = $this->feed['variant_id'];
         $this->feed['assoc_id'] = $this->feed['product_id'];
         $this->feed['src'] = $this->feed['default_image_src'];
-        $this->feed['thumb'] = $this->feed['default_image_thumb'];
+        $this->feed['thumb'] = Str::replaceFirst('50x50', '150x150', $this->feed['default_image_thumb']);
 
         unset($this->feed['hits'],
             $this->feed['variant_id'],
