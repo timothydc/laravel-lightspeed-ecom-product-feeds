@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.10.1] - 2021-02-18
+### Fixed
+- Lightspeed languages weren't filtered on "active"
+
 ## [v1.10.0] - 2021-01-21
 ### Changed
 - Set default Sooqr image thumb size to 150x150
@@ -130,7 +134,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Commands to create, list and remove product feed via `artisan`-commands
 - Option to overwrite XML data structure via interface binding
 
-[Unreleased]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.10.0...HEAD
+[Unreleased]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.10.1...HEAD
+[v1.10.0]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/.v1.10.0...v1.10.1
 [v1.10.0]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.9.1...v1.10.0
 [v1.9.1]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.9.0...v1.9.1
 [v1.9.0]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.8.0...v1.9.0

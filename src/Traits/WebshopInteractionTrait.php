@@ -14,8 +14,10 @@ trait WebshopInteractionTrait
     protected function getWebshopLanguageCodes(): array
     {
         if (! $this->webshopLanguageCodes) {
-            // get languages from Lightspeed
-            $this->webshopLanguageCodes = array_column(LightspeedEcomApi::languages()->get(), 'code');
+            // get active languages from Lightspeed
+            $availableLanguages = collect(LightspeedEcomApi::languages()->get())->where('isActive', true)->toArray();
+
+            $this->webshopLanguageCodes = array_column($availableLanguages, 'code');
         }
 
         return $this->webshopLanguageCodes;
