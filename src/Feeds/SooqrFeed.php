@@ -49,8 +49,8 @@ class SooqrFeed extends Feed
 
         $this->feed['unique_id'] = $this->feed['variant_id'];
         $this->feed['assoc_id'] = $this->feed['product_id'];
-        $this->feed['src'] = $this->feed['default_image_src'];
-        $this->feed['thumb'] = Str::replaceFirst('50x50', '150x150', $this->feed['default_image_thumb']);
+        $this->feed['src'] = $this->feed['default_image_src'] ?? '';
+        $this->feed['thumb'] = Str::replaceFirst('50x50', '150x150', $this->feed['default_image_thumb'] ?? '');
 
         unset($this->feed['hits'],
             $this->feed['variant_id'],
