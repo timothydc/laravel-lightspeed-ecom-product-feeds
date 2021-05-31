@@ -318,6 +318,14 @@ class TestCase extends Orchestra
             ],
             'hits' => 0,
             'url' => 'http://base.url/our-little-dummy-url.html',
+            'variant_id' => 1234567,
+            'article_code' => 'CODE XQE',
+            'ean' => '978020137962',
+            'sku' => '',
+            'tax' => 0.21,
+            'price_incl' => 5,
+            'old_price_incl' => 0,
+            'stock_level' => 411,
         ];
     }
 
@@ -326,6 +334,7 @@ class TestCase extends Orchestra
         $this->productXmlOutput = '<?xml version="1.0"?>
 <products>
   <product>
+    <variant_id>1234567</variant_id>
     <product_id>1234567890</product_id>
     <update_date>' . now()->addMinutes(30)->toDateTimeString() . '</update_date>
     <create_date>' . now()->toDateTimeString() . '</create_date>
@@ -343,6 +352,13 @@ class TestCase extends Orchestra
     <supplier><![CDATA[]]></supplier>
     <default_image_thumb>https://cdn.webshopapp.com/shops/12345/files/00987654/50x50x2/file.jpg</default_image_thumb>
     <default_image_src>https://cdn.webshopapp.com/shops/12345/files/00987654/file.jpg</default_image_src>
+    <article_code>CODE XQE</article_code>
+    <ean>978020137962</ean>
+    <sku></sku>
+    <tax>0.21</tax>
+    <price_incl>5</price_incl>
+    <old_price_incl>0</old_price_incl>
+    <stock_level>411</stock_level>
     <images>
       <image>
         <thumb>https://cdn.webshopapp.com/shops/12345/files/00987654/50x50x2/file.jpg</thumb>
