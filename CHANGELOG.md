@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.11.1] - 2021-05-31
+### Fixed
+- Tests and CS fixer
+
 ## [v1.11.0] - 2021-05-31
 ### Added
 - Merge default variant data to product data for "product based"-feeds
@@ -143,7 +147,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Commands to create, list and remove product feed via `artisan`-commands
 - Option to overwrite XML data structure via interface binding
 
-[Unreleased]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.11.0...HEAD
+[Unreleased]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.11.1...HEAD
+[v1.11.1]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/.v1.11.0...v1.11.1
 [v1.11.0]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/.v1.10.2...v1.11.0
 [v1.10.2]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/.v1.10.1...v1.10.2
 [v1.10.1]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/.v1.10.0...v1.10.1
