@@ -69,7 +69,11 @@ abstract class Feed implements ProductPayloadMappingInterface
 
     protected function generateProductInfoFromProduct(array $lightspeedData): array
     {
+        // get the default variant
+        $variant = collect($lightspeedData['variants'])->filter(fn ($variant) => $variant['isDefault'])->first();
+
         return [
+            'variant_id' => $variant['id'],
             'product_id' => $lightspeedData['id'],
             'update_date' => $this->convertDate($lightspeedData['updatedAt']),
             'create_date' => $this->convertDate($lightspeedData['createdAt']),
@@ -87,6 +91,13 @@ abstract class Feed implements ProductPayloadMappingInterface
             'supplier' => ['_cdata' => $lightspeedData['supplier']['title'] ?? ''],
             'default_image_thumb' => $lightspeedData['image']['thumb'] ?? '',
             'default_image_src' => $lightspeedData['image']['src'] ?? '',
+            'article_code' => $variant['articleCode'],
+            'ean' => $variant['ean'],
+            'sku' => $variant['sku'],
+            'tax' => $variant['tax'],
+            'price_incl' => $variant['priceIncl'],
+            'old_price_incl' => $variant['oldPriceIncl'],
+            'stock_level' => $variant['stockLevel'],
         ];
     }
 
