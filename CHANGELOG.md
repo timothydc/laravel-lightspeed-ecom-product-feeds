@@ -148,10 +148,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Option to overwrite XML data structure via interface binding
 
 [Unreleased]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.11.1...HEAD
-[v1.11.1]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/.v1.11.0...v1.11.1
-[v1.11.0]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/.v1.10.2...v1.11.0
-[v1.10.2]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/.v1.10.1...v1.10.2
-[v1.10.1]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/.v1.10.0...v1.10.1
+[v1.11.1]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.11.0...v1.11.1
+[v1.11.0]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.10.2...v1.11.0
+[v1.10.2]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.10.1...v1.10.2
+[v1.10.1]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.10.0...v1.10.1
 [v1.10.0]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.9.1...v1.10.0
 [v1.9.1]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.9.0...v1.9.1
 [v1.9.0]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.8.0...v1.9.0
