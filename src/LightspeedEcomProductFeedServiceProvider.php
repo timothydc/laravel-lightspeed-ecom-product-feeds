@@ -79,8 +79,12 @@ class LightspeedEcomProductFeedServiceProvider extends ServiceProvider
 
     protected function loadScheduledTasks(): self
     {
-        if (Schema::hasTable('product_feeds') === true) {
-            $this->app->booted(fn () => $this->addScheduledTasks($this->app->make(Schedule::class)));
+        try {
+            if (Schema::hasTable('product_feeds') === true) {
+                $this->app->booted(fn () => $this->addScheduledTasks($this->app->make(Schedule::class)));
+            }
+        } catch (\Illuminate\Database\QueryException $e) {
+            // this will be thrown when the database connection can't be established (eg. during a fresh install)
         }
 
         return $this;
