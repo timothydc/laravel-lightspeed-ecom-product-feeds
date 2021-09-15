@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.12.0] - 2021-09-15
+### Added
+- Add prefix to filter and specification nodes which use a reserved word in the Sooqr feed
+
 ## [v1.11.2] - 2021-07-05
 ### Fixed
 - Catch database error when booting the package without a valid database connection
@@ -151,7 +155,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Commands to create, list and remove product feed via `artisan`-commands
 - Option to overwrite XML data structure via interface binding
 
-[Unreleased]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.11.2...HEAD
+[Unreleased]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.12.0...HEAD
+[v1.11.2]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.11.2...v1.12.0
 [v1.11.2]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.11.1...v1.11.2
 [v1.11.1]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.11.0...v1.11.1
 [v1.11.0]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.10.2...v1.11.0

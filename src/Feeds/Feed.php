@@ -14,6 +14,8 @@ abstract class Feed implements ProductPayloadMappingInterface
     protected string $baseUrl;
     protected array $feed = [];
 
+    protected array $reservedWords = ['product']; // in lowercase
+
     public function execute(string $baseUrl, array $lightspeedData): array
     {
         $this->baseUrl = $baseUrl;
@@ -137,5 +139,11 @@ abstract class Feed implements ProductPayloadMappingInterface
     protected function convertDate(string $date): string
     {
         return Carbon::createFromTimeString($date)->toDateTimeString();
+    }
+
+    public function setReservedWords(array $reservedWords): self
+    {
+        $this->reservedWords = $reservedWords;
+        return $this;
     }
 }

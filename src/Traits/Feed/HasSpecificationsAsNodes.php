@@ -18,7 +18,13 @@ trait HasSpecificationsAsNodes
                 continue;
             }
 
-            $this->feed[$this->specificationTreeMainNode . Str::xmlNode($specification['name'])] = $this->specificationFields($specification);
+            // check for reserved words
+            $nodeName = $this->specificationTreeMainNode . Str::xmlNode($specification['name']);
+            if (in_array(strtolower($nodeName), (property_exists($this, 'reservedWords') ? $this->reservedWords : []), true)) {
+                $nodeName = 'specification_' . $nodeName;
+            }
+
+            $this->feed[$nodeName] = $this->specificationFields($specification);
         }
     }
 

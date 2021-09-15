@@ -174,6 +174,25 @@ class SooqrFeedTest extends TestCase
                         ],
                     ],
                 ],
+                [
+                    'id' => 13,
+                    'createdAt' => now()->toAtomString(),
+                    'updatedAt' => now()->toAtomString(),
+                    'sortOrder' => 2,
+                    'title' => 'Product',
+                    'values' => [
+                        [
+                            'id' => 442,
+                            'sortOrder' => 1,
+                            'title' => 'Car',
+                        ],
+                        [
+                            'id' => 467,
+                            'sortOrder' => 2,
+                            'title' => 'Bike',
+                        ],
+                    ],
+                ],
             ],
             'reviews' => [],
             'specifications' => [
@@ -191,6 +210,11 @@ class SooqrFeedTest extends TestCase
                     'id' => 4346,
                     'name' => 'Bonkers',
                     'value' => '',
+                ],
+                [
+                    'id' => 4396,
+                    'name' => 'Product',
+                    'value' => 'Yes',
                 ],
             ],
             'discounts' => [],
@@ -257,8 +281,15 @@ class SooqrFeedTest extends TestCase
                     ['_cdata' => 'Green'],
                 ],
             ],
+            'filter_product' => [
+                'node' => [
+                    ['_cdata' => 'Car'],
+                    ['_cdata' => 'Bike'],
+                ],
+            ],
             'packages' => [['_cdata' => 5]],
             'airtight' => [['_cdata' => 'Yes']],
+            'specification_product' => [['_cdata' => 'Yes']],
         ];
     }
 
@@ -299,8 +330,13 @@ class SooqrFeedTest extends TestCase
       <node><![CDATA[Red]]></node>
       <node><![CDATA[Green]]></node>
     </color>
+    <filter_product>
+      <node><![CDATA[Car]]></node>
+      <node><![CDATA[Bike]]></node>
+    </filter_product>
     <packages><![CDATA[5]]></packages>
     <airtight><![CDATA[Yes]]></airtight>
+    <specification_product><![CDATA[Yes]]></specification_product>
   </product>
 </products>
 ';

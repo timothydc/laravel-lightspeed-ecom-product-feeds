@@ -18,12 +18,18 @@ trait HasFiltersAsNodes
                 continue;
             }
 
+            // check for reserved words
+            $nodeName = $this->filterTreeChildNode . Str::xmlNode($filter['title']);
+            if (in_array(strtolower($nodeName), (property_exists($this, 'reservedWords') ? $this->reservedWords : []), true)) {
+                $nodeName = 'filter_' . $nodeName;
+            }
+
             foreach ($filter['values'] as $filterValue) {
                 if ($this->filterValueSkip($lightspeedData, $filter, $filterValue)) {
                     continue;
                 }
 
-                $this->feed[$this->filterTreeChildNode . Str::xmlNode($filter['title'])][$this->filterValueTreeChildNode][] = ['_cdata' => $filterValue['title']];
+                $this->feed[$nodeName][$this->filterValueTreeChildNode][] = ['_cdata' => $filterValue['title']];
             }
         }
     }
