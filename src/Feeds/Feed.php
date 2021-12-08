@@ -144,6 +144,7 @@ abstract class Feed implements ProductPayloadMappingInterface
     public function setReservedWords(array $reservedWords): self
     {
         $this->reservedWords = $reservedWords;
+
         return $this;
     }
 }
