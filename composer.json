@@ -11,7 +11,7 @@
     "homepage": "https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds",
     "keywords": ["timothydc", "lightspeed", "eCommerce", "laravel", "feed", "sooqr"],
     "require": {
-        "php": "^7.4",
+        "php": "^7.4|^8.0",
         "laravel/legacy-factories": "^1.0.5",
         "spatie/array-to-xml": "^2.10",
         "timothydc/laravel-lightspeed-ecom-api": "^1.1",
