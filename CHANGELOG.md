@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.15.0] - 2024-10-23
+### Added
+- Laravel 10 and 11 support
+  
 ## [v1.14.0] - 2022-10-25
 ### Added
 - Laravel 9 support
@@ -163,7 +167,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Commands to create, list and remove product feed via `artisan`-commands
 - Option to overwrite XML data structure via interface binding
 
-[Unreleased]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.14.0...HEAD
+[Unreleased]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.15.0...HEAD
+[v1.15.0]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.14.0...v1.15.0
 [v1.14.0]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.13.0...v1.14.0
 [v1.13.0]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.12.0...v1.13.0
 [v1.12.0]: https://github.com/timothydc/laravel-lightspeed-ecom-product-feeds/compare/v1.11.2...v1.12.0
